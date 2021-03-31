@@ -42,5 +42,112 @@ Week 1
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2003-42-18-568.jpg)
 
+6. Masuk Instalasi, Memilih English USA sebagai bahasa default.
 
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2003-43-19-674.jpg)
 
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2003-43-53-375.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2003-44-01-443.jpg)
+
+7. Mengatur IP Static
+
+- Subnet 192.168.0.0/224 (255.255.255.0)
+- Adreess reverse: menjadi 192.168.0.20
+- Gateway: 192.168.0.1
+- Name Servers: 192.168.0.1
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2003-57-02-042.jpg)
+
+8. Tidak meng-konfigurasi proxy, skip...
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2003-58-35-073.jpg)
+
+9. Configure Ubuntu archive mirror sebagai default
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2003-58-38-776.jpg)
+
+10. Melakukan kostumisasi penyimpanan server.
+
+- Mount Boot `/` sebesar 6+GB dengan type `ext4`
+- Mount Swab sebesar 1GB dengan type `swap`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2003-58-48-537.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-00-28-908.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-00-46-733.jpg)
+
+11. Mengatur informasi user
+
+- Nama: Jouzie Aulia Rezky
+- Server Name: DWDS04JAR
+- Username: aureezz
+- Password: **********
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-01-56-571.jpg)
+
+12. Install OpenSSH server agar dapat diremote.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-04-01-761.jpg)
+
+13. Tidak menginstall Featured Server Snaps, karena tidak butuh.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-04-09-294.jpg)
+
+14. Instalasi....
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-04-18-995.jpg)
+
+15. Instalasi Selesai
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-13-51-472.jpg)
+
+16. Proses Reboot, dan login server
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-18-04-621.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-21-35-595.jpg)
+
+17. Melakukan remote SSH dari luar VM, dengan menggunakan Bash Windows Subsystem Linux (Ubuntu 20.04 Focal Fossa)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-22-12-056.jpg)
+
+18. Melakukan update dan upgrade depedensi `sudo apt update` dan `sudo apt upgrade`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-23-39-507.jpg)
+
+19. Instal NodeSource menggunakan curl (Node.js v14.x)
+
+```
+curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-26-44-672.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-27-13-244.jpg)
+
+20. Melakukan clone project `wayshub-frontend`
+
+```
+git clone https://github.com/sgnd/wayshub-frontend
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-29-29-861.jpg)
+
+21. Installasi NPM
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-29-48-970.jpg)
+
+22. Menjalankan NPM untuk menjalankan `wayshub-frontend`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-33-01-338.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-33-06-972.jpg)
+
+23. Konek alamat 192.168.0.20:3000 di browser
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-38-01-222.jpg)
+
+ 
