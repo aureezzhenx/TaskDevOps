@@ -3,7 +3,12 @@ Jouzie Aulia Rezky - DWDS04JAR
 
 Week 1
 
+# VMware Local untuk deploy `wayshub-project`
+Tools yang saya gunakan: Bash Windows Subsystem Linux, VMware Player, ISO Ubuntu Server 20.04. NodeSource (Node.JS 14x).
+
 # - VMware - Install Ubuntu
+
+Untuk Setup Network, bersamaan disaat instal Ubuntu ini.
 
 1. Pilih `Create a New Virtual Machine`
 
@@ -50,6 +55,8 @@ Week 1
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2003-44-01-443.jpg)
 
+# VMware - Setup Network
+
 7. Mengatur IP Static
 
 - Subnet 192.168.0.0/224 (255.255.255.0)
@@ -66,6 +73,8 @@ Week 1
 9. Configure Ubuntu archive mirror sebagai default
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2003-58-38-776.jpg)
+
+# Continue: VMware - Install Ubuntu
 
 10. Melakukan kostumisasi penyimpanan server.
 
@@ -108,6 +117,8 @@ Week 1
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-18-04-621.jpg)
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-21-35-595.jpg)
+
+# VMware - Install Application
 
 17. Melakukan remote SSH dari luar VM, dengan menggunakan Bash Windows Subsystem Linux (Ubuntu 20.04 Focal Fossa)
 
