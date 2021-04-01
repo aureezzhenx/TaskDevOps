@@ -151,7 +151,7 @@ git clone https://github.com/sgnd/wayshub-frontend
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-29-48-970.jpg)
 
-22. Menjalankan NPM untuk menjalankan `wayshub-frontend`
+22. Menjalankan NPM dengan cara `npm start` untuk menjalankan `wayshub-frontend`
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-33-01-338.jpg)
 
