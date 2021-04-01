@@ -59,7 +59,7 @@ Untuk Setup Network, bersamaan disaat instal Ubuntu ini.
 
 7. Mengatur IP Static
 
-- Subnet 192.168.0.0/224 (255.255.255.0)
+- Subnet 192.168.0.0/24 (255.255.255.0)
 - Adreess: 192.168.0.20
 - Gateway: 192.168.0.1
 - Name Servers: 192.168.0.1
