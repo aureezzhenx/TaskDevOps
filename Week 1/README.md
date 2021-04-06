@@ -162,3 +162,60 @@ git clone https://github.com/sgnd/wayshub-frontend
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-38-01-222.jpg)
 
  
+# AWS - Create And Setup Server
+
+# Membuat server Reverse Proxy untuk public
+
+1. Launch Instance
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-42-59-759.jpg)
+
+2. Sesuai task yang diminta, install Ubuntu 18.xx (18.04 LTS)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-43-14-555.jpg)
+
+3. Memilih spesifikasi `t2.micro` sesuai dengan task.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-43-30-467.jpg)
+
+4. Cukup merubah `Auto-assign Public IP` menjadi `Disable`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-44-11-382.jpg)
+
+5. Storage server 8GB
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-45-14-601.jpg)
+
+6. Configure Security Group, Tambah 3 Rules
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-46-35-775.jpg)
+
+7. Review and Launch...
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-48-32-426.jpg)
+
+8. Membuat Key Pair baru untuk akses instance pertama kali, `Create a new key pair` lalu isi Nama Keynya. Setelah itu Download
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-49-06-083.jpg)
+
+9. Jika sudah, `View Instance`, lalu masuk ke ke `Elastic IP`, di sidebar kiri di menu `Network and Security`
+
+Lalu klik `Allocate Elastic IP Adreess`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-50-08-409.jpg)
+
+10. Klik Allocate 
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-50-22-386.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-50-20-060.jpg)
+
+11. Selanjutnya, klik `Action` lalu `Associate Elastic IP Adreess` untuk melakukan Asosiasi Elastik IP dengan Instance Server Public yang sebelumnya dibuat
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-50-46-090.jpg)
+
+12. Pilih Instance sebelumnya untuk diasosiasikan Elastic IP-nya
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-50-53-632.jpg)
+
+Setting server public selesai
