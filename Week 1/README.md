@@ -250,9 +250,101 @@ Pembuatan Instance Server Public selesai.
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-55-04-660.jpg)
 
-Pembuatan Instance Server Private selesai. Selanjutnya melalukan eksekusi Server Public di Terminal
+Pembuatan Instance Server Private selesai. Selanjutnya melalukan sedikit perubahan terhadap Subnet di 2 Instance
 
-# Eksekusi server Public di Terminal
+# Melakukan sedikit perubahan Subnet
+
+1. Menuju `Services > VPC`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-13-40-666.jpg)
+
+2. Klik Subnet, lalu rename yang semula `-` menjadi Subnet Public `subnet-c3ccf58e` dan Subnet Private `subnet-400eb371`. Cara mengetahui Itu subnet Public/Private atau bukan, cek kembali di `Instance > Pilih Instance nya > Klik Network > Cari Subnet ID`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-23-39-433.jpg)
+
+Selanjutnya mengatur NAT INSTANCE terhadap Server Private.
+
+# Konfigurasi NAT INSTANCE 
+
+Karena sifat Server Private itu tidak ada IP Publicnya, maka dari itu Server Private tidak ada koneksi internet secara langsung. Maka dari itu perlu Meng-Konfigurasi NAT INSTANCE Agar Server Private dapat saluran koneksi Internet dari Server Public (54.162.149.199) dengan cara instalasi Instance Baru dengan menggunakan AMI (Amazon Machine Image) NAT 
+
+1. Launch Instance > Community AMI > Ketik di search `nat`. Pilih versi teratas
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-24-53-709.jpg)
+
+2. Memilih `t2.micro`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-25-28-478.jpg)
+
+3. Di step ini, yang perlu dirubah hanyalah Subnet, lalu diarahkan di Subnet Public yang sebelumnya dibuat. Lalu `Auto-assigned Public IP` menjadi Enable
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-25-59-392.jpg)
+
+4. Buat Security Group Baru, dengan 1 Rule saja, yaitu All Traffic, lalu isi Source nya menyesuaikan IP Subnet Private Sebelumnya. Cara mengecek IP nya, Subnet > Private Subnet nya > Network > IPv4 CDR. Saya mengisi Source `172.31.48.0/20`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-31-24-461.jpg)
+
+5. Memilih Rekomendasi dari AWS
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-31-59-508.jpg)
+
+6. Launch Instance...
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-32-04-607.jpg)
+
+7. Masih tetap menggunakan Key-Pair yang sama
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-32-25-339.jpg)
+
+8. Halaman akan diarahkan ke List Instance, Klik NAT INSTANCE yang sebelumnya dibuat, lalu klik `Action` lalu `Networking > Change Source/destination check`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-33-34-069.jpg)
+
+9. Checklist pada kotak `STOP`, lalu save.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-33-44-376.jpg)
+
+10. Masuk kembali ke `Services > Route Tables` dan lakukan `Create Route Tables`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-34-29-575.jpg)
+
+11. Membuat Route baru, lalu pilih VPCnya, karena cuma 1, saya memilih yang itu saja.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-35-19-517.jpg)
+
+12. Jika sudah, tampilan akan menjadi seperti ini. Klik Close.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-35-34-958.jpg)
+
+13. Masih di Route Tables, Klik Route yang sebelumnya dibuat, lalu klik `Edit Routes`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-35-57-410.jpg)
+
+14. Mengisi Destination `0.0.0.0/0` lalu arahakan Target ke NAT INSTANCE (dengan cara mengetik 'i-...' nanti akan keliatan NAT INSTANCE nya), jika sudah. Save.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-36-40-296.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-37-16-408.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-37-20-180.jpg)
+
+15. Menuju Subnet, klik Subnet Private yang sebelumnya dibuat, Lalu Klik `Action > Edit Route Table Association`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/1.png)
+
+16. Arahkan Route Table ID menuju Private Route yang sebelumnya dibuat di Route Tables, jika sudah. Save
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/2.png)
+
+17. Subnet Private untuk Server Private sudah berhasil di asosiasikan, dan Installasi NAT INSTANCE juga sudah selesai.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/3.png)
+
+Selanjutnya, Eksekusi Server Public Dan Private di Terminal
+
+# Eksekusi server di Terminal
+
+# Public Server
 
 1. Masuk ke directory Downloads, lalu ubah perizinan terhadap file `.pem` dengan akses Superuser yang sebelumnya di download dengan `sudo chmod 400 JouzieAuliaRezky.pem`
 
@@ -282,6 +374,8 @@ Pembuatan Instance Server Private selesai. Selanjutnya melalukan eksekusi Server
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-02-49-645.jpg)
 
+# Private Server
+
 8. Melakukan transfer (upload) Key-Pair dari local ke Server Public (54.162.149.199) dengan cara `scp JouzieAuliaRezky.pem jouzie@54.162.149.199:/home/JouzieAuliaRezky.pem` (FORMAT `scp NamaKey.pem user@ip:/direktori_untuk_menyimpan/Nama-Key.pem`) lalu masukan Password User.
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-10-10-018.jpg)
@@ -291,3 +385,126 @@ Pembuatan Instance Server Private selesai. Selanjutnya melalukan eksekusi Server
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-11-30-137.jpg)
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-12-38-399.jpg)
+
+10. Melakukan PING dari Server Private ke `8.8.8.8` dan `google.com`. Intenet sudah dapat digunakan.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-39-45-382.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-41-10-065.jpg)
+
+11. Sama seperti sebelumnya, saya melakukan penambahan user agar login Server Private tidak menggunakan Key-Pair nya lagi. `sudo adduser jouziefrontend`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-56-07-028.jpg)
+
+12. Melakukan `sudo usermod -aG sudo jouziefrontend`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-56-28-132.jpg)
+
+13. Konfigurasi SSHD Config, dengan cara `sudo nano /etc/ssh/sshd_config`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-56-58-263.jpg)
+
+14. Melakukan Perubahan terhadap `PasswordAuthentication` Menjadi `YES`. Sama seperti sebelumnya di Server Public.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-57-15-296.jpg)
+
+15. Jika sudah, merestart SSHD untuk merefresh config yang sudah diatur sebelumnya dengan cara `sudo systemctl restart sshd`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-57-41-679.jpg)
+
+16. Jika sudah, ketik `exit` untuk keluar dari server Private menuju Server Public, untuk mencoba login Server Private dengan user `jouziefrontend`, Login Server Private kembali dari Server Public dengan cara `ssh jouziefrontend@172.31.48.93`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-58-23-048.jpg)
+
+# AWS - Server For Application
+
+1. Login dari Server Public ke Server Private (172.31.48.93) `ssh jouziefrontend@172.31.48.93`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-02-45-776.jpg)
+
+2. Melakukan update depedensi di server Private. `sudo apt upgrade` dan `sudo apt update`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-04-22-014.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-04-33-537.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-05-15-822.jpg)
+
+3. Meng-instal `Node Version Manager (NVM)` dengan command `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash`. lalu ketik `exec bash` dan ketik `nvm -v` agar memastikan NVM telah terinstall
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-09-16-217.jpg)
+
+4. Meng-Install Node.js 14 dengan NVM dengna cara `nvm install 14`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-09-35-082.jpg)
+
+5. Memastikan Node.js telah terinstall, ketik `node -v` dan `npm -v`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-10-08-232.jpg)
+
+6. Melakukan Clone git `wayshub-frontend`
+
+```
+git clone https://github.com/sgnd/wayshub-frontend
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-10-23-131.jpg)
+
+7. Masuk ke directory `wayshub-frontend` dengan cara `cd wayshub-frontend/` lalu install package nya dengan cara `npm install`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-10-52-014.jpg)
+
+8. Instal `pm2` di directory Wayshub agar aplikasinya berjalan di background
+
+```
+cd wayshub-frontend/
+npm install pm2 -g
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-15-35-218.jpg)
+
+9. Masih di directory Wayshub, ketik `pm2 ecosystem` untuk meng-generate file `ecosystem.config.js` didalam folder `wayshub-frontend`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-15-58-713.jpg)
+
+10. Masih di directory Wayshub, melakukan konfigurasi file `ecosystem.config.js` dengan `sudo nano ecosystem.config.js` seperti ini
+
+```
+module.exports=
+{
+      apps:
+      [
+                {
+                         name: 'wayshub';
+                         script: 'npm';
+                         args: 'start';
+                }
+      ]
+}
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-20-02-118.jpg)
+
+11. Masih di directory Wayshub, menjalankan `pm2` dengan cara `pm2 start ecosystem.config.js`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-21-07-844.jpg)
+
+12. Meng-inisialisasi `pm2` dengan Key-Metrics yang disedesiakan di `https://app.pm2.io/` agar dapat memantau `wayshub-project` tanpa perlu login server Private
+
+Saya login menggunakan akun Google.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
