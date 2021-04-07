@@ -416,6 +416,93 @@ Selanjutnya, Eksekusi Server Public Dan Private di Terminal
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-58-23-048.jpg)
 
+# AWS - Server For Application
+
+1. Login dari Server Public ke Server Private (172.31.48.93) `ssh jouziefrontend@172.31.48.93`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-02-45-776.jpg)
+
+2. Melakukan update depedensi di server Private. `sudo apt upgrade` dan `sudo apt update`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-04-22-014.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-04-33-537.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-05-15-822.jpg)
+
+3. Meng-instal `Node Version Manager (NVM)` dengan command `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash`. lalu ketik `exec bash` dan ketik `nvm -v` agar memastikan NVM telah terinstall
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-09-16-217.jpg)
+
+4. Meng-Install Node.js 14 dengan NVM dengna cara `nvm install 14`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-09-35-082.jpg)
+
+5. Memastikan Node.js telah terinstall, ketik `node -v` dan `npm -v`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-10-08-232.jpg)
+
+6. Melakukan Clone git `wayshub-frontend`
+
+```
+git clone https://github.com/sgnd/wayshub-frontend
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-10-23-131.jpg)
+
+7. Masuk ke directory `wayshub-frontend` dengan cara `cd wayshub-frontend/` lalu install package nya dengan cara `npm install`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-10-52-014.jpg)
+
+8. Instal `pm2` di directory Wayshub agar aplikasinya berjalan di background
+
+```
+cd wayshub-frontend/
+npm install pm2 -g
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-15-35-218.jpg)
+
+9. Masih di directory Wayshub, ketik `pm2 ecosystem` untuk meng-generate file `ecosystem.config.js` didalam folder `wayshub-frontend`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-15-58-713.jpg)
+
+10. Masih di directory Wayshub, melakukan konfigurasi file `ecosystem.config.js` dengan `sudo nano ecosystem.config.js` seperti ini
+
+```
+module.exports=
+{
+      apps:
+      [
+                {
+                         name: 'wayshub';
+                         script: 'npm';
+                         args: 'start';
+                }
+      ]
+}
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-20-02-118.jpg)
+
+11. Masih di directory Wayshub, menjalankan `pm2` dengan cara `pm2 start ecosystem.config.js`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-21-07-844.jpg)
+
+12. Meng-inisialisasi `pm2` dengan Key-Metrics yang disedesiakan di `https://app.pm2.io/` agar dapat memantau `wayshub-project` tanpa perlu login server Private
+
+Saya login menggunakan akun Google.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
