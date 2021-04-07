@@ -667,32 +667,30 @@ Hanya merubah server_name. Jika sudah, Save dengan `CTRL+X` lalu save overwrite 
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2001-02-41-183.jpg)
 
+# AWS - SSL Configuration
 
+1. Masih di Server Public, ketik command `sudo certbot` Lalu ketik `1` sesuai urutan subdomain saya
 
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2001-03-27-577.jpg)
 
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2001-03-32-338.jpg)
 
+2. Memilih Attempt to reinstall this existing certificate, ketik `1`
 
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2001-03-38-648.jpg)
 
+3. Melakukan redirect dari HTTP menuju HTTPS, ketik `2`. Dan Sertifikat Lets Encrypt! telah selesai dipasang
 
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2001-04-18-678.jpg)
 
+4. Mengecek `frontend.conf` di `/etc/nginx/wayshub` yang sudah di generate oleh certbot. Command `sudo nano frontend.conf`
 
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2001-05-03-818.jpg)
 
+5. Melakukan Restart nginx dengan command `sudo systemctl reload nginx` 
 
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2001-05-32-396.jpg)
 
+6. Akses `jouzie.onlinecamp.id` lalu cek Sertifikat Lets Encrypt!
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2001-06-38-203.jpg)
