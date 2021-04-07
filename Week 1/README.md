@@ -164,7 +164,7 @@ git clone https://github.com/sgnd/wayshub-frontend
  
 # AWS - Create And Setup Server
 
-# Membuat server Reverse Proxy untuk public
+# Membuat server Public Reverse Proxy
 
 1. Launch Instance
 
@@ -214,8 +214,10 @@ Lalu klik `Allocate Elastic IP Adreess`
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-50-46-090.jpg)
 
-12. Pilih Instance sebelumnya untuk diasosiasikan Elastic IP-nya
+12. Pilih Instance sebelumnya untuk diasosiasikan Elastic IP-nya, Lalu klik `Associate`
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-50-53-632.jpg)
 
 Setting server public selesai
+
+# Membuat server Private Aplikasi (wayshub-frontend)
