@@ -250,9 +250,101 @@ Pembuatan Instance Server Public selesai.
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-55-04-660.jpg)
 
-Pembuatan Instance Server Private selesai. Selanjutnya melalukan eksekusi Server Public di Terminal
+Pembuatan Instance Server Private selesai. Selanjutnya melalukan sedikit perubahan terhadap Subnet di 2 Instance
 
-# Eksekusi server Public di Terminal
+# Melakukan sedikit perubahan Subnet
+
+1. Menuju `Services > VPC`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-13-40-666.jpg)
+
+2. Klik Subnet, lalu rename yang semula `-` menjadi Subnet Public `subnet-c3ccf58e` dan Subnet Private `subnet-400eb371`. Cara mengetahui Itu subnet Public/Private atau bukan, cek kembali di `Instance > Pilih Instance nya > Klik Network > Cari Subnet ID`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-23-39-433.jpg)
+
+Selanjutnya mengatur NAT INSTANCE terhadap Server Private.
+
+# Konfigurasi NAT INSTANCE 
+
+Karena sifat Server Private itu tidak ada IP Publicnya, maka dari itu Server Private tidak ada koneksi internet secara langsung. Maka dari itu perlu Meng-Konfigurasi NAT INSTANCE Agar Server Private dapat saluran koneksi Internet dari Server Public (54.162.149.199) dengan cara instalasi Instance Baru dengan menggunakan AMI (Amazon Machine Image) NAT 
+
+1. Launch Instance > Community AMI > Ketik di search `nat`. Pilih versi teratas
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-24-53-709.jpg)
+
+2. Memilih `t2.micro`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-25-28-478.jpg)
+
+3. Di step ini, yang perlu dirubah hanyalah Subnet, lalu diarahkan di Subnet Public yang sebelumnya dibuat. Lalu `Auto-assigned Public IP` menjadi Enable
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-25-59-392.jpg)
+
+4. Buat Security Group Baru, dengan 1 Rule saja, yaitu All Traffic, lalu isi Source nya menyesuaikan IP Subnet Private Sebelumnya. Cara mengecek IP nya, Subnet > Private Subnet nya > Network > IPv4 CDR. Saya mengisi Source `172.31.48.0/20`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-31-24-461.jpg)
+
+5. Memilih Rekomendasi dari AWS
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-31-59-508.jpg)
+
+6. Launch Instance...
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-32-04-607.jpg)
+
+7. Masih tetap menggunakan Key-Pair yang sama
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-32-25-339.jpg)
+
+8. Halaman akan diarahkan ke List Instance, Klik NAT INSTANCE yang sebelumnya dibuat, lalu klik `Action` lalu `Networking > Change Source/destination check`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-33-34-069.jpg)
+
+9. Checklist pada kotak `STOP`, lalu save.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-33-44-376.jpg)
+
+10. Masuk kembali ke `Services > Route Tables` dan lakukan `Create Route Tables`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-34-29-575.jpg)
+
+11. Membuat Route baru, lalu pilih VPCnya, karena cuma 1, saya memilih yang itu saja.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-35-19-517.jpg)
+
+12. Jika sudah, tampilan akan menjadi seperti ini. Klik Close.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-35-34-958.jpg)
+
+13. Masih di Route Tables, Klik Route yang sebelumnya dibuat, lalu klik `Edit Routes`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-35-57-410.jpg)
+
+14. Mengisi Destination `0.0.0.0/0` lalu arahakan Target ke NAT INSTANCE (dengan cara mengetik 'i-...' nanti akan keliatan NAT INSTANCE nya), jika sudah. Save.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-36-40-296.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-37-16-408.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-37-20-180.jpg)
+
+15. Menuju Subnet, klik Subnet Private yang sebelumnya dibuat, Lalu Klik `Action > Edit Route Table Association`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/1.png)
+
+16. Arahkan Route Table ID menuju Private Route yang sebelumnya dibuat di Route Tables, jika sudah. Save
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/2.png)
+
+17. Subnet Private untuk Server Private sudah berhasil di asosiasikan, dan Installasi NAT INSTANCE juga sudah selesai.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/3.png)
+
+Selanjutnya, Eksekusi Server Public Dan Private di Terminal
+
+# Eksekusi server di Terminal
+
+# Public Server
 
 1. Masuk ke directory Downloads, lalu ubah perizinan terhadap file `.pem` dengan akses Superuser yang sebelumnya di download dengan `sudo chmod 400 JouzieAuliaRezky.pem`
 
@@ -282,6 +374,8 @@ Pembuatan Instance Server Private selesai. Selanjutnya melalukan eksekusi Server
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-02-49-645.jpg)
 
+# Private Server
+
 8. Melakukan transfer (upload) Key-Pair dari local ke Server Public (54.162.149.199) dengan cara `scp JouzieAuliaRezky.pem jouzie@54.162.149.199:/home/JouzieAuliaRezky.pem` (FORMAT `scp NamaKey.pem user@ip:/direktori_untuk_menyimpan/Nama-Key.pem`) lalu masukan Password User.
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-10-10-018.jpg)
@@ -291,3 +385,7 @@ Pembuatan Instance Server Private selesai. Selanjutnya melalukan eksekusi Server
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-11-30-137.jpg)
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-12-38-399.jpg)
+
+10. Melakukan PING dari Server Private ke `8.8.8.8`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-39-45-382.jpg)
