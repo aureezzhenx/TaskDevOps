@@ -563,6 +563,124 @@ include /etc/nginx/wayshub/*;
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-38-57-915.jpg)
 
+# AWS - Custom Domain
+
+1. Akses `dash.cloudflare.com` Lalu pilih akun `Sugandaletters@outlook.com's Account`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-40-59-808.jpg)
+
+2. Klik `onlinecamp.id`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-41-04-288.jpg)
+
+3. Membuat record Subdomain baru, Klik `Add record` lalu pilih type `A` lalu isi di bagian name `jouzie` sebagai subdomain nya, mengisi `IPv4 adreess` dengan IP Server Public atau Reverse Proxy `54.162.149.199` dan Proxy On. Lalu save.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-41-47-607.jpg)
+
+4. Login ke Server Public `ssh jouzie@59.162.149.199`. lalu buat folder `.secrets`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-43-27-227.jpg)
+
+5. Membuat dan mengedit file `cloudflare.ini` di folder `.secrets` sebelumnya dengan command `sudo nano .secrets/cloudflade.ini `
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-44-04-171.jpg)
+
+6. Sebelum mengedit file `cloudflare.ini`, masuk ke profile Cloudflare pribadi (jouzie.aurez@gmail.com), Lalu klik View di Global API Key.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-42-18-508.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-42-38-765.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-44-57-726.jpg)
+
+7. Masuk ke edit nano `cloudflare.ini` lalu isi email dan Global API Key yang sebelumnya didapat dari Cloudflare seperti ini:
+
+```
+dns_cloudflare_email = "jouzie.aurez@gmail.com"
+dns_cloudflare_api_key = "9721bb68b9e97ed6dda38c271f6a06069d422"
+```
+
+Jika sudah, Save dengan cara pencet `CTRL+X` lalu save dengan nama file overwrite `cloudflare.ini`, ketik `Y`.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-45-28-663.jpg)
+
+8. Melakukan perubahan perizinan terhadap directory `.secrets` dan file `cloudflare.ini`
+
+```
+sudo chmod 0700 .secrets
+sudo chmod 0400 .secrets/cloudflare.ini
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-48-23-321.jpg)
+
+9. Menginstall `certbot` dengan 3 command berikut:
+
+```
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+sudo apt-get install certbot python3-certbot-nginx python3-certbot-dns-cloudflare
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-50-52-718.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-51-00-429.jpg)
+
+10. Menjalankan `certbot` dengan Cloudflare Authenticator dengan command:
+
+```
+sudo certbot certonly --dns-cloudflare --dns-cloudflare-credentials ~/.secrets/cloudflare.ini -d jouzie.onlinecamp.id challenges dns-01
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-52-31-557.jpg)
+
+11. Mengisi alamat email yang terdaftar di Cloudflare, dan setuju atas Terms & Services Lets Encrypt, dan tunggu verifikasi nya selama kurang lebih 10 detik.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-52-50-470.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-53-10-974.jpg)
+
+12. Jika sudah, masuk ke directory `/etc/nginx/wayshub/` dengan command `cd /etc/nginx/wayshub` lalu edit file `frontend.conf` nya dengan nano, command `sudo nano frontend.conf`. Edit seperti ini
+
+```
+server
+{
+         listen 80;
+         
+         server_name jouzie.onlinecamp.id;
+         
+         location / 
+         {
+                proxy_pass http://172.31.48.93:3000;
+         }
+}
+```
+
+Hanya merubah server_name. Jika sudah, Save dengan `CTRL+X` lalu save overwrite `frontend.conf` ketik `Y`.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2001-01-42-452.jpg)
+
+13. Jika sudah, lakukan validasi konfigurasi nginx dengan command `sudo nginx -t`. Jika sudah lakukan refresh konfigurasi dengan cara Merestart nginx-nya dengan command `sudo systemctl restart nginx`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2001-02-21-118.jpg)
+
+14. Buka Browser. Akses `jouzie.onlinecamp.id` 
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2001-02-41-183.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
