@@ -218,6 +218,76 @@ Lalu klik `Allocate Elastic IP Adreess`
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-50-53-632.jpg)
 
-Setting server public selesai
+Pembuatan Instance Server Public selesai.
 
 # Membuat server Private Aplikasi (wayshub-frontend)
+
+1. Masih sama dengan sebelumnya, langkah pertama adalah `Launch Instance`, lalu pilih OS Ubuntu 18.xx
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-52-18-245.jpg)
+
+2. Memilih Spesifikasi Server, pilih `t2.micro` Sesuai task
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-52-26-152.jpg)
+
+3. Cukup merubah `Auto-assign Public IP` menjadi `Disable`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-52-36-290.jpg)
+
+4. Add Storage sama seperti sebelumnya, hanya `8GB`.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-52-41-062.jpg)
+
+5. Meng-konfigurasi Security Group, hanya saja ini berbeda seperti Server Public sebelumnya, yaitu hanya 1 type saja, yaitu `All Traffic` agar semua port dapat diakses.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-53-48-315.jpg)
+
+6. Launch Instance....
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-54-14-299.jpg)
+
+7. Memakai Key-Pair yang sebelum nya dibuat, agar dapat ditransfer dari Server Public, Jika sudah, Klik Launch Instance
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-55-04-660.jpg)
+
+Pembuatan Instance Server Private selesai. Selanjutnya melalukan eksekusi Server Public di Terminal
+
+# Eksekusi server Public di Terminal
+
+1. Masuk ke directory Downloads, lalu ubah perizinan terhadap file `.pem` dengan akses Superuser yang sebelumnya di download dengan `sudo chmod 400 JouzieAuliaRezky.pem`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-58-27-979.jpg)
+
+2. Masuk ke Server Public yang sudah di asosiasikan dengan Elastic IP (54.162.149.199) dengan akses Superuser dengan cara `sudo ssh -i JouzieAuliaRezky.pem ubuntu@54.162.149.199`. Lalu ketik `yes`.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2022-59-44-616.jpg)
+
+3. Melakukan penambahan user dengan metode `adduser`, agar nanti Login Server Public tidak menggunakan Key-Pair lagi, dengan cara `sudo adduser jouzie`, Lalu mengisi value User Information, tekan `ENTER` Jika tidak ingin di-isikan, jika sudah ketik `Y`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-00-32-824.jpg)
+
+4. Melakukan usermod `sudo usermod -aG sudo jouzie`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-00-54-454.jpg)
+
+5. Masuk ke directory `ssh` dengan cara `cd /etc/ssh/` lalu merubah konfigurasi SSHD dengan menggunakan nano `sudo nano sshd_config`. Cari pada bagian `PasswordAuthentication`, mengganti yang sebelumnya `no` menjadi `yes` agar dapat login menggunakan user yang sebelumnya. Jika sudah, save dengan cara `CTRL-X` lalu Save Overwrite ketik `Y`.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-01-35-762.jpg)
+
+6. Melakukan restart terhadap SSDH dengan cara `sudo systemctl restart sshd`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-02-29-025.jpg)
+
+7. Ketik `exit` untuk keluar dari server, untuk mencoba login dengan user yang sebelumnya dibuat, dengan cara `ssh jouzie@54.162.149.199`, Memasukan Password, dan berhasil. Jika sudah, `Exit` Untuk keluar, langkah berikutnya Meng-Transfer Key-Pair yang sebelumnya.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-02-49-645.jpg)
+
+8. Melakukan transfer (upload) Key-Pair dari local ke Server Public (54.162.149.199) dengan cara `scp JouzieAuliaRezky.pem jouzie@54.162.149.199:/home/JouzieAuliaRezky.pem` (FORMAT `scp NamaKey.pem user@ip:/direktori_untuk_menyimpan/Nama-Key.pem`) lalu masukan Password User.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-10-10-018.jpg)
+
+9. Login Server Public, lalu mengecek apakah file Key-Pair. Melakukan Perubahan Perizinan terhadap `JouzieAuliaRezky.pem` dengan cara `chmod 600 JouzieAuliaRezky.pem`, lalu Masuk ke Server Private menggunakan Key-Pair dengan cara `ssh -i JouzieAuliaRezky.pem ubuntu@172.31.48.93`, ketik `YES` untuk melakukan validasi Fingerprint. Cara mengecek IP Private nya, masuk ke AWS Management Console, klik Instance Server Private yang sudah dibuat sebelumnya, lalu cari `Private IPv4 addresses`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-11-30-137.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-12-38-399.jpg)
