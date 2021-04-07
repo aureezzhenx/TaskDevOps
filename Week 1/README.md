@@ -489,9 +489,23 @@ module.exports=
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-21-07-844.jpg)
 
-12. Meng-inisialisasi `pm2` dengan Key-Metrics yang disedesiakan di `https://app.pm2.io/` agar dapat memantau `wayshub-project` tanpa perlu login server Private
+12. Meng-inisialisasi `pm2` dengan Key-Metrics yang disedesiakan di `https://app.pm2.io/` agar dapat memantau `wayshub-project` tanpa perlu login server Private, Saya login menggunakan akun Google.
 
-Saya login menggunakan akun Google.
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2018-38-31-154.jpg)
+
+13. Memberi nama bucket baru, saya memberi nama dengan `Wayshub-Frontend`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2018-39-54-475.jpg)
+
+14. Menghubungkan `pm2` ke `Website pm2.io` dengan cara copy link-nya. Lalu paste command nya dengan cara masuk ke directory `wayshub-frontend` di server Private.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2018-40-18-277.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2018-41-53-814.jpg)
+
+15. `pm2 wayshub` sudah terkoneksi di Key-Matrics milik pm2.io. Agar dapat memonitoring tanpa perlu login server Private. 
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2018-42-30-985.jpg)
 
 
 
