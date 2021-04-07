@@ -1,6 +1,8 @@
 # TaskDevOps
 Jouzie Aulia Rezky - DWDS04JAR - DevOps Batch 4 All Task
 
+Sistem Operasi yang digunakan: Windows 10 Pro H102 - Menggunakan Bash Windows Subsystem Linux (Ubuntu)
+
 Week 1
 - [VMware - Install Ubuntu](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/README.md#--vmware---install-ubuntu)
 - [VMware - Setup Network](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/README.md#vmware---setup-network)
