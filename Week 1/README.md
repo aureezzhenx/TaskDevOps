@@ -286,7 +286,7 @@ Pembuatan Instance Server Private selesai. Selanjutnya melalukan eksekusi Server
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-10-10-018.jpg)
 
-9. Login Server Public, lalu mengecek apakah file Key-Pair. Melakukan Perubahan Perizinan terhadap `JouzieAuliaRezky.pem` dengan cara `chmod 600 JouzieAuliaRezky.pem`, lalu Masuk ke Server Private menggunakan Key-Pair dengan cara `ssh -i JouzieAuliaRezky.pem ubuntu@172.31.48.93`, ketik `YES` untuk melakukan validasi Fingerprint. Cara mengecek IP Private nya, masuk ke AWS Management Console, klik Instance Server Private yang sudah dibuat sebelumnya, lalu cari `Private IPv4 addresses`
+9. Login Server Public, lalu mengecek apakah file Key-Pair nya sudah terupload apa belum. Jika sudah, saya melakukan Perubahan Perizinan terhadap `JouzieAuliaRezky.pem` dengan cara `chmod 600 JouzieAuliaRezky.pem`, lalu Masuk ke Server Private menggunakan Key-Pair dengan cara `ssh -i JouzieAuliaRezky.pem ubuntu@172.31.48.93`, ketik `YES` untuk melakukan validasi Fingerprint. Cara mengecek IP Private nya, masuk ke AWS Management Console, klik Instance Server Private yang sudah dibuat sebelumnya, lalu cari `Private IPv4 addresses`
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-11-30-137.jpg)
 
