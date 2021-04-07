@@ -507,6 +507,62 @@ module.exports=
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2018-42-30-985.jpg)
 
+# AWS - Reverse Proxy
+
+1. Login ke Server Public `ssh jouzie@54.162.149.199` 
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-25-39-057.jpg)
+
+2. Melakukan update depedensi dengan cara `sudo apt upgrade` dan `sudo apt update`, ketik `Y` untuk konfirmasi.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-26-12-545.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-29-39-250.jpg)
+
+3. Selanjutnya, install NGINX dengan command `sudo apt install nginx`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-31-39-145.jpg)
+
+4. Membuat direktori `wayshub` di `/etc/nginx` dengan command `sudo mkdir /etc/nginx/wayshub`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-32-20-029.jpg)
+
+5. Jika sudah, membuat dan mengedit file `frontend.conf` dengan nano. Command `sudo nano frontend.conf`. Lalu edit seperti ini
+
+```
+server
+{
+         listen 80;
+         
+         server_name 54.162.149.199;
+         
+         location / 
+         {
+                proxy_pass http://172.31.48.93:3000;
+         }
+}
+```
+
+Jika sudah, Pencet `CTRL+X` untuk save, lalu save dengan file `frontend.conf`, Ketik `Y`.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-36-50-938.jpg)
+
+6. Pindah ke directory `/etc/nginx/`. Lalu edit `nginx.conf` dengan nano. Command `sudo nano nginx.conf`. Cari pada bagian include, lalu tambahkan seperti ini.
+
+```
+include /etc/nginx/wayshub/*;
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-37-51-313.jpg)
+
+7. Jika sudah, lakukan validasi konfigurasi nginx dengan command `sudo nginx -t`. Jika sudah lakukan refresh konfigurasi dengan cara Merestart nginx-nya dengan command `sudo systemctl restart nginx`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-38-27-167.jpg)
+
+8. Buka browser. Akses `59.162.149.199` tanpa port `3000`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-38-57-915.jpg)
+
 
 
 
