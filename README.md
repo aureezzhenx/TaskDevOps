@@ -15,3 +15,13 @@ Week 2
 - Install Git and SSH Key (0%)
 - Setup Database (0%)
 - Deploy Backend Application (0%)
+
+Week 3
+- TBA
+- TBA
+- TBA
+
+Week 4
+- TBA
+- TBA
+- TBA
