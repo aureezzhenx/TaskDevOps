@@ -1,4 +1,4 @@
-# TaskDevOps
+# Task DevOps
 Jouzie Aulia Rezky - DWDS04JAR - DevOps Batch 4 All Task
 
 Sistem Operasi yang digunakan: Windows 10 Pro H102 - Menggunakan Bash Windows Subsystem Linux (Ubuntu)
