@@ -489,7 +489,7 @@ module.exports=
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-21-07-844.jpg)
 
-12. Meng-inisialisasi `pm2` dengan Key-Metrics yang disedesiakan di `https://app.pm2.io/` agar dapat memantau `wayshub-project` tanpa perlu login server Private, Saya login menggunakan akun Google.
+12. Meng-inisialisasi `pm2` dengan Key-Metrics yang disedesiakan di `https://app.pm2.io/` agar dapat memantau `pm2 wayshub` tanpa perlu login server Private, Saya login menggunakan akun Google.
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2018-38-31-154.jpg)
 
