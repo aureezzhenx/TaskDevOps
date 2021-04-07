@@ -386,6 +386,38 @@ Selanjutnya, Eksekusi Server Public Dan Private di Terminal
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-12-38-399.jpg)
 
-10. Melakukan PING dari Server Private ke `8.8.8.8`
+10. Melakukan PING dari Server Private ke `8.8.8.8` dan `google.com`. Intenet sudah dapat digunakan.
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-39-45-382.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-41-10-065.jpg)
+
+11. Sama seperti sebelumnya, saya melakukan penambahan user agar login Server Private tidak menggunakan Key-Pair nya lagi. `sudo adduser jouziefrontend`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-56-07-028.jpg)
+
+12. Melakukan `sudo usermod -aG sudo jouziefrontend`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-56-28-132.jpg)
+
+13. Konfigurasi SSHD Config, dengan cara `sudo nano /etc/ssh/sshd_config`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-56-58-263.jpg)
+
+14. Melakukan Perubahan terhadap `PasswordAuthentication` Menjadi `YES`. Sama seperti sebelumnya di Server Public.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-57-15-296.jpg)
+
+15. Jika sudah, merestart SSHD untuk merefresh config yang sudah diatur sebelumnya dengan cara `sudo systemctl restart sshd`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-57-41-679.jpg)
+
+16. Jika sudah, ketik `exit` untuk keluar dari server Private menuju Server Public, untuk mencoba login Server Private dengan user `jouziefrontend`, Login Server Private kembali dari Server Public dengan cara `ssh jouziefrontend@172.31.48.93`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-06%2023-58-23-048.jpg)
+
+
+
+
+
+
