@@ -2,6 +2,14 @@
 Jouzie Aulia Rezky - DWDS04JAR
 
 Week 1
+- [VMware - Install Ubuntu](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/README.md#--vmware---install-ubuntu)
+- [VMware - Setup Network](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/README.md#vmware---setup-network)
+- [VMware - Server For Application](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/README.md#vmware---install-application)
+- [AWS - Create And Setup Server](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/README.md#aws---create-and-setup-server)
+- [AWS - Server For Application](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/README.md#aws---server-for-application)
+- [AWS - Reverse Proxy](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/README.md#aws---reverse-proxy)
+- [AWS - Custom Domain](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/README.md#aws---custom-domain)
+- [AWS - SSL Configuration](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/README.md#aws---ssl-configuration)
 
 # VMware Local untuk deploy `wayshub-project`
 Tools yang saya gunakan: Bash Windows Subsystem Linux, VMware Player, ISO Ubuntu Server 20.04. NodeSource (Node.JS 14x).
