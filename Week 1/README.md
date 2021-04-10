@@ -2,6 +2,14 @@
 Jouzie Aulia Rezky - DWDS04JAR
 
 Week 1
+- [VMware - Install Ubuntu](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/README.md#--vmware---install-ubuntu)
+- [VMware - Setup Network](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/README.md#vmware---setup-network)
+- [VMware - Server For Application](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/README.md#vmware---install-application)
+- [AWS - Create And Setup Server](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/README.md#aws---create-and-setup-server)
+- [AWS - Server For Application](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/README.md#aws---server-for-application)
+- [AWS - Reverse Proxy](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/README.md#aws---reverse-proxy)
+- [AWS - Custom Domain](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/README.md#aws---custom-domain)
+- [AWS - SSL Configuration](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/README.md#aws---ssl-configuration)
 
 # VMware Local untuk deploy `wayshub-project`
 Tools yang saya gunakan: Bash Windows Subsystem Linux, VMware Player, ISO Ubuntu Server 20.04. NodeSource (Node.JS 14x).
@@ -489,22 +497,208 @@ module.exports=
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-21-07-844.jpg)
 
-12. Meng-inisialisasi `pm2` dengan Key-Metrics yang disedesiakan di `https://app.pm2.io/` agar dapat memantau `wayshub-project` tanpa perlu login server Private
+12. Meng-inisialisasi `pm2` dengan Key-Metrics yang disedesiakan di `https://app.pm2.io/` agar dapat memantau `pm2 wayshub` tanpa perlu login server Private, Saya login menggunakan akun Google.
 
-Saya login menggunakan akun Google.
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2018-38-31-154.jpg)
 
+13. Memberi nama bucket baru, saya memberi nama dengan `Wayshub-Frontend`
 
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2018-39-54-475.jpg)
 
+14. Menghubungkan `pm2` ke `Website pm2.io` dengan cara copy link-nya. Lalu paste command nya dengan cara masuk ke directory `wayshub-frontend` di server Private.
 
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2018-40-18-277.jpg)
 
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2018-41-53-814.jpg)
 
+15. `pm2 wayshub` sudah terkoneksi di Key-Matrics milik pm2.io. Agar dapat memonitoring tanpa perlu login server Private. 
 
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2018-42-30-985.jpg)
 
+# AWS - Reverse Proxy
 
+1. Login ke Server Public `ssh jouzie@54.162.149.199` 
 
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-25-39-057.jpg)
 
+2. Melakukan update depedensi dengan cara `sudo apt upgrade` dan `sudo apt update`, ketik `Y` untuk konfirmasi.
 
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-26-12-545.jpg)
 
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-29-39-250.jpg)
 
+3. Selanjutnya, install NGINX dengan command `sudo apt install nginx`
 
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-31-39-145.jpg)
 
+4. Membuat direktori `wayshub` di `/etc/nginx` dengan command `sudo mkdir /etc/nginx/wayshub`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-32-20-029.jpg)
+
+5. Jika sudah, membuat dan mengedit file `frontend.conf` dengan nano. Command `sudo nano frontend.conf`. Lalu edit seperti ini
+
+```
+server
+{
+         listen 80;
+         
+         server_name 54.162.149.199;
+         
+         location / 
+         {
+                proxy_pass http://172.31.48.93:3000;
+         }
+}
+```
+
+Jika sudah, Pencet `CTRL+X` untuk save, lalu save dengan file `frontend.conf`, Ketik `Y`.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-36-50-938.jpg)
+
+6. Pindah ke directory `/etc/nginx/`. Lalu edit `nginx.conf` dengan nano. Command `sudo nano nginx.conf`. Cari pada bagian include, lalu tambahkan seperti ini.
+
+```
+include /etc/nginx/wayshub/*;
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-37-51-313.jpg)
+
+7. Jika sudah, lakukan validasi konfigurasi nginx dengan command `sudo nginx -t`. Jika sudah lakukan refresh konfigurasi dengan cara Merestart nginx-nya dengan command `sudo systemctl restart nginx`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-38-27-167.jpg)
+
+8. Buka browser. Akses `59.162.149.199` tanpa port `3000`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-38-57-915.jpg)
+
+# AWS - Custom Domain
+
+1. Akses `dash.cloudflare.com` Lalu pilih akun `Sugandaletters@outlook.com's Account`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-40-59-808.jpg)
+
+2. Klik `onlinecamp.id`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-41-04-288.jpg)
+
+3. Membuat record Subdomain baru, Klik `Add record` lalu pilih type `A` lalu isi di bagian name `jouzie` sebagai subdomain nya, mengisi `IPv4 adreess` dengan IP Server Public atau Reverse Proxy `54.162.149.199` dan Proxy On. Lalu save.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-41-47-607.jpg)
+
+4. Login ke Server Public `ssh jouzie@59.162.149.199`. lalu buat folder `.secrets`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-43-27-227.jpg)
+
+5. Membuat dan mengedit file `cloudflare.ini` di folder `.secrets` sebelumnya dengan command `sudo nano .secrets/cloudflade.ini `
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-44-04-171.jpg)
+
+6. Sebelum mengedit file `cloudflare.ini`, masuk ke profile Cloudflare pribadi (jouzie.aurez@gmail.com), Lalu klik View di Global API Key.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-42-18-508.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-42-38-765.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-44-57-726.jpg)
+
+7. Masuk ke edit nano `cloudflare.ini` lalu isi email dan Global API Key yang sebelumnya didapat dari Cloudflare seperti ini:
+
+```
+dns_cloudflare_email = "jouzie.aurez@gmail.com"
+dns_cloudflare_api_key = "9721bb68b9e97ed6dda38c271f6a06069d422"
+```
+
+Jika sudah, Save dengan cara pencet `CTRL+X` lalu save dengan nama file overwrite `cloudflare.ini`, ketik `Y`.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-45-28-663.jpg)
+
+8. Melakukan perubahan perizinan terhadap directory `.secrets` dan file `cloudflare.ini`
+
+```
+sudo chmod 0700 .secrets
+sudo chmod 0400 .secrets/cloudflare.ini
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-48-23-321.jpg)
+
+9. Menginstall `certbot` dengan 3 command berikut:
+
+```
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+sudo apt-get install certbot python3-certbot-nginx python3-certbot-dns-cloudflare
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-50-52-718.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-51-00-429.jpg)
+
+10. Menjalankan `certbot` dengan Cloudflare Authenticator dengan command:
+
+```
+sudo certbot certonly --dns-cloudflare --dns-cloudflare-credentials ~/.secrets/cloudflare.ini -d jouzie.onlinecamp.id challenges dns-01
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-52-31-557.jpg)
+
+11. Mengisi alamat email yang terdaftar di Cloudflare, dan setuju atas Terms & Services Lets Encrypt, dan tunggu verifikasi nya selama kurang lebih 10 detik.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-52-50-470.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2000-53-10-974.jpg)
+
+12. Jika sudah, masuk ke directory `/etc/nginx/wayshub/` dengan command `cd /etc/nginx/wayshub` lalu edit file `frontend.conf` nya dengan nano, command `sudo nano frontend.conf`. Edit seperti ini
+
+```
+server
+{
+         listen 80;
+         
+         server_name jouzie.onlinecamp.id;
+         
+         location / 
+         {
+                proxy_pass http://172.31.48.93:3000;
+         }
+}
+```
+
+Hanya merubah server_name. Jika sudah, Save dengan `CTRL+X` lalu save overwrite `frontend.conf` ketik `Y`.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2001-01-42-452.jpg)
+
+13. Jika sudah, lakukan validasi konfigurasi nginx dengan command `sudo nginx -t`. Jika sudah lakukan refresh konfigurasi dengan cara Merestart nginx-nya dengan command `sudo systemctl restart nginx`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2001-02-21-118.jpg)
+
+14. Buka Browser. Akses `jouzie.onlinecamp.id` 
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2001-02-41-183.jpg)
+
+# AWS - SSL Configuration
+
+1. Masih di Server Public, ketik command `sudo certbot` Lalu ketik `1` sesuai urutan subdomain saya
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2001-03-27-577.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2001-03-32-338.jpg)
+
+2. Memilih Attempt to reinstall this existing certificate, ketik `1`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2001-03-38-648.jpg)
+
+3. Melakukan redirect dari HTTP menuju HTTPS, ketik `2`. Dan Sertifikat Lets Encrypt! telah selesai dipasang
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2001-04-18-678.jpg)
+
+4. Mengecek `frontend.conf` di `/etc/nginx/wayshub` yang sudah di generate oleh certbot. Command `sudo nano frontend.conf`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2001-05-03-818.jpg)
+
+5. Melakukan Restart nginx dengan command `sudo systemctl reload nginx` 
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2001-05-32-396.jpg)
+
+6. Akses `jouzie.onlinecamp.id` lalu cek Sertifikat Lets Encrypt!
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-07%2001-06-38-203.jpg)
