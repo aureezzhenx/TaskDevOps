@@ -9,3 +9,5 @@ Week 2
 - Deployment Backend Application
 
 # Install Git and SSH Key
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2003-40-28-114.jpg)
