@@ -10,7 +10,7 @@ Week 2
 
 # Install Git and SSH Key
 
-Membuat SSH Key baru untuk koneksi ke GitHub. Karena sifat file SSH Key itu tersimpan di direktori `.ssh`, saya langsung eksekusi di direktori tersebut ditambah Commands dibawah ini:
+Membuat SSH Key baru untuk koneksi ke GitHub. Saya tidak menginstal Git, karena sudah ada. Karena sifat file SSH Key itu tersimpan di direktori `.ssh`, saya langsung eksekusi di direktori tersebut ditambah Commands dibawah ini:
 
 ```
 1. cd ~/.ssh && ssh-keygen
