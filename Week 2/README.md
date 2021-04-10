@@ -20,6 +20,12 @@ Week 2
 5. cat aureezzhenx.pub # Melihat SSH Key seluruhnya, lalu copy.
 ```
 
+CATATAN: Sebelum melakukan `ssh-add` harus menjalankan command `ssh-agent`. Sebelumnya saya sudah menjalankan command tersebut.
+
+```
+eval `ssh-agent -s`
+```
+
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img/bandicam%202021-04-11%2006-09-55-175.jpg)
 
 2. Pergi menuju Settings Account > SSH and GPG Keys > Add New SSH Keys, lalu paste yang sudah di copy sebelumnya
