@@ -61,7 +61,7 @@ eval `ssh-agent -s`
 Catatan:
 
 ```
-1. Security Group kedua Instance: All Traffic & MYSQL (3306)
+1. Security Group kedua Instance: All Traffic & MYSQL (3306) dengan source custom ip 0.0.0.0
 2. Subnet kedua Instance: Memakai Subnet Private sebelumnya.
 3. Auto assigned Public kedua Instance: Disabled
 4. Kedua type Instance: t2.micro
