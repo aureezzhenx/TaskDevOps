@@ -389,6 +389,25 @@ sudo systemctl restart nginx
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-58-35-361.jpg)
 
+24. Akses `jouzie.onlinecamp.id` Dan lakukan Sign-up. Sukses. Jika sudah, Log-in.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/image_2021-04-11_18-31-33.png)
+
+25. Lakukan tes Upload File
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2018-35-23-191.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2018-35-27-623.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2018-35-31-520.jpg)
+
+26. Deploy `wayshub-backend` sukses!
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2018-35-40-796.jpg)
+
+
+
+
 
 
 
