@@ -14,7 +14,7 @@ Week 1
 - [AWS - SSL Configuration](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/README.md#aws---ssl-configuration)
 
 Week 2
-- Install Git and SSH Key (0%)
+- [Install Git and SSH Key](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/README.md#install-git-and-ssh-key)
 - Setup Database (0%)
 - Deploy Backend Application (0%)
 
