@@ -61,12 +61,12 @@ eval `ssh-agent -s`
 Catatan:
 
 ```
-Security Group kedua Instance: All Traffic & MYSQL (3306)
-Subnet kedua Instance: Memakai Subnet Private sebelumnya.
-Auto assigned Public kedua Instance: Disabled
-Kedua type Instance: t2.micro
-Storage kedus Instance: 8GB
-Kedua Instance memakai Key-Pair yang sama, JouzieAuliaRezky.pem
+1. Security Group kedua Instance: All Traffic & MYSQL (3306)
+2. Subnet kedua Instance: Memakai Subnet Private sebelumnya.
+3. Auto assigned Public kedua Instance: Disabled
+4. Kedua type Instance: t2.micro
+5. Storage kedus Instance: 8GB
+6. Kedua Instance memakai Key-Pair yang sama, JouzieAuliaRezky.pem
 ```
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/abandicam%202021-04-11%2013-08-46-722.jpg)
