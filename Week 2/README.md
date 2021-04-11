@@ -110,3 +110,78 @@ Lalu tampilan nya nanti akan seperti ini. Saya meing-instal MYSQL versi 8.x, lal
 ```
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-10%2016-32-02-899.jpg)
+
+8. Exit `mysql` dengan cara mengetik `exit`. Sekarang untuk melakukan `adduser` seperti biasa.
+
+```
+1. sudo adduser jouziedatabase
+2. Mengisi Informasi user jouziedatabase
+3. sudo usermod -aG sudo jouziedatabase
+4. sudo /etc/ssh/sshd_config
+5. Merubah PasswordAuthentication menjadi Yes, save overwrite
+6. sudo systemctl restart sshd
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-10%2016-39-34-882.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-10%2016-39-57-646.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-10%2016-40-16-857.jpg)
+
+9. Logout Instance `DATABASE - PRIVATE` sekarang melakukan setup di `BACKEND - PRIVATE`. Login di instance Backend
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-10%2016-46-21-409.jpg)
+
+10. Tambah user seperti biasa untuk `BACKEND - PRIVATE` agar tidak login menggunakan SSH Key-Pair lagi.
+
+```
+1. sudo adduser jouziebackend
+2. Mengisi Informasi user jouziebackend
+3. sudo usermod -aG sudo jouziebackend
+4. sudo /etc/ssh/sshd_config
+5. Merubah PasswordAuthentication menjadi Yes, save overwrite
+6. sudo systemctl restart sshd
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-10%2016-48-42-429.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-10%2016-49-50-908.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-10%2016-50-41-925.jpg)
+
+11. Karena di `BACKEND - PRIVATE` belum bisa meremote MYSQL di `DATABASE - PRIVATE`, oleh karena itu diharuskan install `mysql-client-core-5.7` dengan command `sudo apt install mysql-client-core-5.7`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-11%2013-11-27-155.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-11%2013-11-50-611.jpg)
+
+12. Masuk ke Instance `DATABASE - PRIVATE` lalu masuk mysql, membuat database `wayshub`
+
+```
+mysql -u root -p
+create database wayshub;
+show databases;
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-11%2013-14-55-559.jpg)
+
+13. Exit `mysql`. Mengisi `bind-address` secara manual pada file `mysqld.cnf` di direktori `/etc/mysql/mysql.conf.d/mysqld.cnf` agar dapat diremote dari `BACKEND - PRIVATE`
+
+```
+1. sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+2. Di bagian [mysqld] tambahkan `bind-adress = 0.0.0.0`. Jika sudah save overwrite
+3. Melakukan restart mysql dengan command `sudo systemctl restart mysql`
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-11%2013-27-21-234.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-11%2013-26-48-898.jpg)
+
+
+
+
+
+
+
+
+
