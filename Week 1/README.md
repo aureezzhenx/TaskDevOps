@@ -147,7 +147,7 @@ sudo apt-get install -y nodejs
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/img/bandicam%202021-04-01%2004-27-13-244.jpg)
 
-20. Melakukan clone project `wayshub-frontend`
+20. Melakukan clone project `wayshub-frontend` dengan command berikut:
 
 ```
 git clone https://github.com/sgnd/wayshub-frontend

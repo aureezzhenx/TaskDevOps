@@ -22,7 +22,7 @@ Catatan: Saya mengerjakan Task ini di Instance `BACKEND - PRIVATE`
 5. cat aureezzhenx.pub # Melihat SSH Key seluruhnya, lalu copy.
 ```
 
-CATATAN: Sebelum melakukan `ssh-add` harus menjalankan command `ssh-agent`. Sebelumnya saya sudah menjalankan command tersebut.
+Catatan: Sebelum melakukan `ssh-add` harus menjalankan command `ssh-agent`. Sebelumnya saya sudah menjalankan command tersebut.
 
 ```
 eval `ssh-agent -s`
@@ -61,11 +61,11 @@ eval `ssh-agent -s`
 Catatan:
 
 ```
-1. Security Group kedua Instance: All Traffic & MYSQL (3306)
+1. Security Group kedua Instance: All Traffic & MYSQL (3306) dengan source custom ip 0.0.0.0
 2. Subnet kedua Instance: Memakai Subnet Private sebelumnya.
 3. Auto assigned Public kedua Instance: Disabled
 4. Kedua type Instance: t2.micro
-5. Storage kedus Instance: 8GB
+5. Storage kedua Instance: 8GB
 6. Kedua Instance memakai Key-Pair yang sama, JouzieAuliaRezky.pem
 ```
 
