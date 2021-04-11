@@ -177,6 +177,29 @@ show databases;
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-11%2013-26-48-898.jpg)
 
+14. Masuk kembali ke `mysql`, dan ketik command menambahkan user baru mysql di bawah ini serta agar dapat diremote dari `BACKEND - PRIVATE`
+
+```
+CREATE USER 'jouzie'@'172.31.54.248' IDENTIFIED by 'jouzie';
+GRANT ALL ON *.* to 'jouzie'@'172.31.54.248';
+FLUSH PRIVILEGES;
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-11%2013-35-48-020.jpg)
+
+15. Masuk kembali ke Instance `BACKEND - PRIVATE`, lalu remote mysql ke `DATABASE - PRIVATE` dengan commands berikut:
+
+```
+1. mysql -u jouzie -h 172.31.50.114 -p
+2. Masukan Password
+```
+
+`mysql` di Instance `DATABASE - PRIVATE` kini sudah dapat diremote dari Instance `BACKEND - PRIVATE`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-11%2013-36-12-726.jpg)
+
+
+
 
 
 
