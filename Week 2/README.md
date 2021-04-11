@@ -63,6 +63,7 @@ Catatan:
 ```
 Security Group kedua Instance: All Traffic & MYSQL (3306)
 Subnet kedua Instance: Memakai Subnet Private sebelumnya.
+Kedua Instance memakai Key-Pair yang sama, JouzieAuliaRezky.pem
 ```
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/abandicam%202021-04-11%2013-08-46-722.jpg)
