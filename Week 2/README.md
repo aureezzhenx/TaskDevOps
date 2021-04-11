@@ -350,7 +350,7 @@ sudo certbot certonly --dns-cloudflare --dns-cloudflare-credentials ~/.secrets/c
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-45-47-572.jpg)
 
-21. Masih di Instace `REVERSE PROXY - PUBLIC`, edit file `frontend.conf` dengan `nano` yang sebelumnya sudah saya buat untuk me-reverse proxy `wayshub-backend`
+21. Masih di Instace `REVERSE PROXY - PUBLIC`, edit file `frontend.conf` di direktory `/etc/nginx/wayshub/` dengan `nano` yang sebelumnya sudah saya buat untuk me-reverse proxy `wayshub-backend`
 
 ```
 Menambahkan ini saja:
@@ -372,7 +372,12 @@ server
 
 }
 ```
-Jika sudah, save overwrite.
+Jika sudah, save overwrite, dan lakukan restart pada `nginx`
+
+```
+sudo nginx -t
+sudo systemctl restart nginx
+```
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-53-24-137.jpg)
 
