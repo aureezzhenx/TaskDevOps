@@ -22,7 +22,7 @@ Catatan: Saya mengerjakan Task ini di Instance `BACKEND - PRIVATE`
 5. cat aureezzhenx.pub # Melihat SSH Key seluruhnya, lalu copy.
 ```
 
-CATATAN: Sebelum melakukan `ssh-add` harus menjalankan command `ssh-agent`. Sebelumnya saya sudah menjalankan command tersebut.
+Catatan: Sebelum melakukan `ssh-add` harus menjalankan command `ssh-agent`. Sebelumnya saya sudah menjalankan command tersebut.
 
 ```
 eval `ssh-agent -s`
