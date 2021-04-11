@@ -6,7 +6,7 @@ Week 2
 
 - [Install Git and SSH Key](https://github.com/aureezzhenx/TaskDevOps/tree/main/Week%202#install-git-and-ssh-key)
 - [Setup Database](https://github.com/aureezzhenx/TaskDevOps/tree/main/Week%202#setup-database)
-- Deployment Backend Application
+- [Deployment Backend Application](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/README.md#deployment-backend-application)
 
 # Install Git and SSH Key
 
