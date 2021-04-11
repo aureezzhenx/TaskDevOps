@@ -238,6 +238,157 @@ use wayshub;
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-02-44-755.jpg)
 
+5. Meng-install `sequelize` untuk migrasi table yang diperlukan dari `BACKEND - PRIVATE` menuju sql di `DATABASE - PRIVATE`
+
+```
+npm install sequelize-cli
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-14-32-997.jpg)
+
+6. Lakukan command `sequelize db:migrate` di direktori `wayshub-backend` untuk mulai migrasi.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-14-38-263.jpg)
+
+7. Mengecek apakah table sudah di ter-imigrasi dari `BACKEND - PRIVATE` menuju sql `DATABASE - PRIVATE`
+
+```
+use wayshub;
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-14-59-480.jpg)
+
+8. Kembali lagi ke Instance `BACKEND - PRIVATE`, lakukan instalasi `pm2` agar `wayshub-backend` berjalan di backgroud.
+
+```
+npm install pm2 -g
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-16-49-673.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-16-58-045.jpg)
+
+9. Jalankan command `pm2 ecoysytem` untuk meng-generate file eksekusi `pm2`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-17-56-243.jpg)
+
+10. Edit file `ecosystem.config.js` dengan nano. Dan edit seperti ini:
+
+```
+module.exports=
+{
+      apps:
+      [
+                {
+                         name: 'wayshub',
+                         script: 'npm',
+                         args: 'start',
+                }
+      ]
+}
+```
+
+Jika sudah, save overwrite.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-18-38-835.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-24-51-372.jpg)
+
+11. Jalankan `pm2` dengan command `pm2 start ecosystem.config.js` agar `wayshub-backend` mulai dapat dijalankan di background
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-25-28-733.jpg)
+
+12. Akses `app.pm2.io`, untuk menambahkan Key-Matrics Monitoring untuk `wayshub-backend`. Pilih Bucket yang sebelumnya sudah dibuat.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-27-31-855.jpg)
+
+13. Klik Connect > Copy link pm2 to PM2.io
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-27-46-572.jpg)
+
+14. Paste link nya di Instance `BACKEND - PRIVATE` di direktory `wayshub-backend`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-28-50-646.jpg)
+
+15. `wayshub-backend` Sudah dapat di Monitoring di `app.pm2.io` tanpa perlu Monitoring di Instance `BACKEND - PRIVATE`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-29-27-667.jpg)
+
+16. Masuk ke Instance `FRONTEND - PRIVATE`, lakukan edit file `api.js` dengan `nano` di `/wayshub-frontend/src/config/`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-33-21-569.jpg)
+
+17. Rubah `baseURL` nya menjadi `https://api.jouzie.onlinecamp.id/api/v1`. Jika sudah, save overwrite.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-34-48-991.jpg)
+
+18. Restart `wayshub-frontend` dan `wayshub-backend` di `app.pm2.io`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-37-22-995.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-37-52-002.jpg)
+
+19. Akses `dash.cloudflare.com` Login, pilih akun `sugandaletters@outlook`, lalu buat record baru:
+
+```
+Type: A
+Name: api.jouzie
+IPv4 Address: 54.162.149.199
+TTL: Auto
+Proxy: DNS Only
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-40-12-724.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-40-26-890.jpg)
+
+20. Masuk ke Instance `REVERSE PROXY - PUBLIC` lalu jalankan command `certbot` berikut untuk meng-instal sertifikat di subdomain `api.jouzie.onlinecamp.id`
+
+```
+sudo certbot certonly --dns-cloudflare --dns-cloudflare-credentials ~/.secrets/cloudflare.ini -d jouzie.onlinecamp.id -d '*.jouzie.onlinecamp.id'
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-45-47-572.jpg)
+
+21. Masih di Instace `REVERSE PROXY - PUBLIC`, edit file `frontend.conf` dengan `nano` yang sebelumnya sudah saya buat untuk me-reverse proxy `wayshub-backend`
+
+```
+Menambahkan ini saja:
+
+server
+{
+        server_name api.jouzie.onlinecamp.id;
+
+        location /
+        {
+                proxy_pass http://172.31.54.248:5000;
+        }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/jouzie.onlinecamp.id/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/jouzie.onlinecamp.id/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+```
+Jika sudah, save overwrite.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-53-24-137.jpg)
+
+22. Jalankan `sudo certbot` untuk me-registrasi SSL terhadap domain `api.jouzie.onlinecamp.id`. Pilih nomor urutan 2
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-57-02-616.jpg)
+
+23. Akses `https://api.jouzie.onlinecamp.id/`. Sukses.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-58-35-361.jpg)
+
+
+
+
+
+
 
 
 
