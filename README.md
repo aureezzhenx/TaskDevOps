@@ -16,7 +16,7 @@ Week 1
 Week 2
 - [Install Git and SSH Key](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/README.md#install-git-and-ssh-key)
 - [Setup Database](https://github.com/aureezzhenx/TaskDevOps/tree/main/Week%202#setup-database)
-- Deploy Backend Application (0%)
+- [Deployment Backend Application](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/README.md#deployment-backend-application)
 
 Week 3
 - TBA
