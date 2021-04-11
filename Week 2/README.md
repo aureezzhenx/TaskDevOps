@@ -68,10 +68,45 @@ Kedua Instance memakai Key-Pair yang sama, JouzieAuliaRezky.pem
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/abandicam%202021-04-11%2013-08-46-722.jpg)
 
-2. Login Instance `DATABASE - PRIVATE`, lalu install `mysql-apt-config` dengan menggunakan command `wget` berikut
+2. Login Instance `DATABASE - PRIVATE`, lalu download `mysql-apt-config` dengan menggunakan command `wget` berikut
 
 ```
 wget https://dev.mysql.com/get/mysql-apt-config_0.8.16-1_all.deb
 ```
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-10%2016-25-29-020.jpg)
+
+3. Memulai instalasi `mysql-apt-config`, ketik command berikut
+
+```
+sudo dpkg -i mysql-apt-config_0.8.16-1_all.deb
+```
+
+Lalu tampilan nya nanti akan seperti ini. Saya meing-instal MYSQL versi 8.x, lalu memilih rekomendasi MYSQL. Jika sudah, Enter di OK.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-10%2016-26-19-047.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-10%2016-26-52-049.jpg)
+
+4. Lakukan update `sudo apt update` dan `sudo apt upgrade` sebelum meng-install `mysql-community-server`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-10%2016-28-28-041.jpg)
+
+5. Selanjutnya, install `mysql-community-server` dengan command `sudo apt install mysql-community-server`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-10%2016-28-54-182.jpg)
+
+6. Membuat Password `root` di `mysql`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-10%2016-29-05-886.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-10%2016-29-13-308.jpg)
+
+7. Jika sudah, masuk `mysql` dengan command berikut
+
+```
+1. mysql -u root -p
+2. Masukan Password yang sebelumnya dibuat
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-10%2016-32-02-899.jpg)
