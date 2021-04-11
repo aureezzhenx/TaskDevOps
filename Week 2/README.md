@@ -4,7 +4,7 @@ Jouzie Aulia Rezky - DWDS04JAR
 
 Week 2
 
-- Install Git and SSH Key
+- [Install Git and SSH Key](https://github.com/aureezzhenx/TaskDevOps/tree/main/Week%202#install-git-and-ssh-key)
 - Setup Database
 - Deployment Backend Application
 
