@@ -67,3 +67,11 @@ Kedua Instance memakai Key-Pair yang sama, JouzieAuliaRezky.pem
 ```
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/abandicam%202021-04-11%2013-08-46-722.jpg)
+
+2. Login Instance `DATABASE - PRIVATE`, lalu install `mysql-apt-config` dengan menggunakan command `wget` berikut
+
+```
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.16-1_all.deb
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-10%2016-25-29-020.jpg)
