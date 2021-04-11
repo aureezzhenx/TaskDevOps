@@ -65,7 +65,7 @@ Catatan:
 2. Subnet kedua Instance: Memakai Subnet Private sebelumnya.
 3. Auto assigned Public kedua Instance: Disabled
 4. Kedua type Instance: t2.micro
-5. Storage kedus Instance: 8GB
+5. Storage kedua Instance: 8GB
 6. Kedua Instance memakai Key-Pair yang sama, JouzieAuliaRezky.pem
 ```
 
