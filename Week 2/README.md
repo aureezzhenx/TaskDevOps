@@ -63,6 +63,9 @@ Catatan:
 ```
 Security Group kedua Instance: All Traffic & MYSQL (3306)
 Subnet kedua Instance: Memakai Subnet Private sebelumnya.
+Auto assigned Public kedua Instance: Disabled
+Kedua type Instance: t2.micro
+Storage kedus Instance: 8GB
 Kedua Instance memakai Key-Pair yang sama, JouzieAuliaRezky.pem
 ```
 
