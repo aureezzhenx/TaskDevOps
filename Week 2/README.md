@@ -203,9 +203,40 @@ FLUSH PRIVILEGES;
 
 # Deployment Backend Application
 
+1. Masuk Instance `BACKEND - PRIVATE`, kemudian mengedit file `config.json` di `wayshub-backend/config/` 
 
+```
+sudo nano config.json
+```
 
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img2/bandicam%202021-04-11%2013-36-12-726.jpg)
 
+2. Hanya merubah yang bagian `development` nya saja, mengisi `username`, `password`, `database`, dan `host` nya. Disesuaikan yang sebelum-sebelumnya. Jika sudah, save overwrite.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2016-58-25-616.jpg)
+
+3. Masuk ke Instance `DATABASE - PRIVATE`, kemudian masuk `mysql prompt` lalu membuat database `wayshub`
+
+```
+create database wayshub;
+show tables;
+use wayshub;
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-00-18-359.jpg)
+
+4. Kembali lagi ke Instance `BACKEND - PRIVATE`, masuk ke directory `wayshub-backend`, setelah itu lakukan instalasi:
+
+```
+1. NVM: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+2. exec bash # Eksekusi Bash NVM
+3. nvm -v # Memastikan NVM Berhasil Diinstal
+4. nvm install 14 # Menginstall Node 14
+5. node -v # Memastikan Node Berhasil Diinstal
+6. npm -v # Memastikan Node Package Manager Berhasil Diinstal
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%202/img3/bandicam%202021-04-11%2017-02-44-755.jpg)
 
 
 
