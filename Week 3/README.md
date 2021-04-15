@@ -64,11 +64,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img1/bandicam%202021-04-16%2001-20-16-387.jpg)
 
-7. Jika sudah berjalan dengan baik, mencoba login Docker dengan command `sudo docker login`, lalu memasukan username dan password yang sudah didaftarkan di `hub.docker.com`
-
-![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img1/bandicam%202021-04-16%2001-21-55-153.jpg)
-
-8. Meng-instal Docker Compose dengan command:
+7. Meng-instal Docker Compose dengan command:
 
 ```
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -76,6 +72,10 @@ sudo chmod +x /usr/local/bin/docker-compose
 ```
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img1/bandicam%202021-04-16%2002-12-39-357.jpg)
+
+8. Jika sudah berjalan dengan baik, mencoba login Docker dengan command `sudo docker login`, lalu memasukan username dan password yang sudah didaftarkan di `hub.docker.com`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img1/bandicam%202021-04-16%2001-21-55-153.jpg)
 
 Docker di Instance `FRONTEND - PRIVATE` sudah berhasil diinstal, selanjutnya meng-install Docker di `BACKEND - PRIVATE`, akses Instance tersebut.
 
@@ -125,11 +125,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img1/bandicam%202021-04-16%2001-24-47-394.jpg)
 
-14. Jika sudah berjalan dengan baik, mencoba login Docker dengan command `sudo docker login`, lalu memasukan username dan password yang sudah didaftarkan di `hub.docker.com`
-
-![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img1/bandicam%202021-04-16%2001-25-01-686.jpg)
-
-15. Meng-instal Docker Compose dengan command:
+14. Meng-instal Docker Compose dengan command:
 
 ```
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -137,6 +133,10 @@ sudo chmod +x /usr/local/bin/docker-compose
 ```
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img1/bandicam%202021-04-16%2002-13-38-692.jpg)
+
+15. Jika sudah berjalan dengan baik, mencoba login Docker dengan command `sudo docker login`, lalu memasukan username dan password yang sudah didaftarkan di `hub.docker.com`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img1/bandicam%202021-04-16%2001-25-01-686.jpg)
 
 Instalasi Docker di kedua Instance telah selesai.
 
