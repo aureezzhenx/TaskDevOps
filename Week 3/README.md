@@ -14,7 +14,7 @@ Week 3 - Docker & CI/CD
 
 Saya menginstall di Instance `FRONTEND - PRIVATE` terlebih dahulu, baru di `BACKEND - PRIVATE`
 
-1. Pastikan sudah lakukan terdaftar di `hub.docker.com`
+1. Pastikan sudah daftar akun Docker di `hub.docker.com`
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img1/bandicam%202021-04-16%2001-08-09-995.jpg)
 
