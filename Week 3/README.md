@@ -140,6 +140,88 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 Instalasi Docker di kedua Instance telah selesai.
 
+# Create Docker Image
+
+Membuat Docker Image terhadap `wayshub-frontend` dan `wayshub-backend`
+
+1. Masuk ke Instance `FRONTEND - PRIVATE` lalu masuk ke directory `wayshub-frontend` dan buat file baru bernama `Dockerfile`.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img2/bandicam%202021-04-16%2005-19-44-179.jpg)
+
+2. Edit file `Dockerfile` seperti ini.
+
+```
+FROM node:14
+WORKDIR /usr/src/app
+COPY . .
+RUN npm i & npm run build
+EXPOSE 3000
+CMD ["npm","start"]
+```
+
+Jika sudah, save overwrite
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img2/bandicam%202021-04-16%2005-19-47-593.jpg)
+
+3. Melakukan Build Docker Images `wayshub-frontend` dengan command:
+
+```
+sudo docker build -t aureezzhenx/wayshub-frontend:v1.0.0 .
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img2/bandicam%202021-04-16%2005-23-42-440.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img2/bandicam%202021-04-16%2005-23-52-319.jpg)
+
+4. Melakukan Push Docker Images ke Repository `hub.docker.com` yang sudah di Build sebelumnya dengan command:
+
+```
+sudo docker push aureezzhenx/wayshub-frontend:v1.0.0
+```
+
+Build Docker Images untuk `wayshub-frontend` telah selesai, selanjutnya di `wayshub-backend`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img2/bandicam%202021-04-16%2005-25-25-341.jpg)
+
+5. Masuk ke Instance `BACKEND - PRIVATE` lalu masuk ke direktori `wayshub-backend` dan buat file baru `Dockerfile`, lalu edit seperti ini
+
+```
+FROM node:14
+WORKDIR /usr/src/app
+COPY . .
+EXPOSE 5000
+CMD ["npm","start"]
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img2/bandicam%202021-04-16%2005-28-55-670.jpg)
+
+6. Melakukan Build Docker Images `wayshub-backend` dengan command:
+
+```
+sudo docker build -t aureezzhenx/wayshub-backend:v1.0.0 .
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img2/bandicam%202021-04-16%2005-30-56-583.jpg)
+
+7. Melakukan Push Docker Images ke Repository `hub.docker.com` yang sudah di Build sebelumnya dengan command:
+
+```
+sudo docker push aureezzhenx/wayshub-backend:v1.0.0
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img2/bandicam%202021-04-16%2005-31-38-573.jpg)
+
+8. Akses Repository di `hub.docker.com`, Repository `wayshub-frontend` dan `wayshub-backend` telah sukses di Push
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img2/bandicam%202021-04-16%2005-31-57-560.jpg)
+
+
+
+
+
+
+
+
 
 
 
