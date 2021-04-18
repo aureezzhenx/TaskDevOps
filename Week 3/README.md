@@ -282,7 +282,7 @@ Catatan:
 1. Security Group Instance: All Traffic
 2. Subnet Instance: Memakai Subnet Private sebelumnya.
 3. Auto assigned Public Instance: Disabled
-4. Kedua type Instance: t2.large
+4. Type Instance: t2.large
 5. Storage Instance: 30GB
 6. Instance memakai Key-Pair yang sama, JouzieAuliaRezky.pem
 ```
