@@ -272,9 +272,69 @@ Container untuk Wayshub-Frontend dan Wayshub-Backend kini sudah berjalan dengan 
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img3/bandicam%202021-04-18%2016-20-11-687.jpg)
 
+# Install Jenkins
 
+1. Akses `awseducate.com` lalu buat Instance untuk `JENKINS CI/CD - PRIVATE`, nantinya `Jenkins` akan diinstal di instance sana.
 
+Catatan:
 
+```
+1. Security Group Instance: All Traffic
+2. Subnet Instance: Memakai Subnet Private sebelumnya.
+3. Auto assigned Public Instance: Disabled
+4. Kedua type Instance: t2.large
+5. Storage Instance: 30GB
+6. Instance memakai Key-Pair yang sama, JouzieAuliaRezky.pem
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2018-34-30-441.jpg)
+
+2. Akses Instance `JENKINS CI/CD - PRIVATE` dengan keypair `JouzieAuliaRezky.pem`. Seperti biasa, lakukan adduser agar tidak menggunakan Key-Pair lagi disaat Log-in Instance tersebut.
+
+Command:
+
+```
+1. sudo adduser jouziejenkins
+2. Memasukan Password UNIX dan mengisi biodata User
+3. sudo usermod -aG sudo jouziejenkins
+4. sudo nano /etc/ssh/sshd_config
+5. Merubah menjadi YES di Password Authentication, save overwrite
+6. sudo systemctl restart sshd
+```
+
+Dan lakukan `sudo apt update` dan `sudo apt upgrade` setelah melakukan `adduser`
+
+3. Install OpenJDK 8 dengan command: `sudo apt-get install openjdk-8-jdk`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2018-35-54-680.jpg)
+
+4. Lakukan ini, Command:
+
+```
+# Menambahkan Key Repository Jenkins
+wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+
+# Menambahkan Repository Jenkins
+sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+
+# Jalankan apt-get update
+sudo apt-get update
+
+# Install Jenkins
+sudo apt-get install jenkins
+
+# Menjalankan Jenkins
+sudo systemctl start jenkins
+
+# Melihat Status Jenkins
+sudo systemctl status jenkins
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2018-37-34-318.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2018-39-10-744.jpg)
+
+`jenkins` sudah terinstall dengan port `8080`, tapi belum bisa di akses secara public karena Instance `JENKINS CI/CD - PRIVATE` tidak ada IP Public-nya. Sekarang lakukan reverse proxy terhadap `jenkins` di Instance `REVERSE PROXY - PUBLIC`
 
 
 
