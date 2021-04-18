@@ -336,6 +336,37 @@ sudo systemctl status jenkins
 
 `jenkins` sudah terinstall dengan port `8080`, tapi belum bisa di akses secara public karena Instance `JENKINS CI/CD - PRIVATE` tidak ada IP Public-nya. Sekarang lakukan reverse proxy terhadap `jenkins` di Instance `REVERSE PROXY - PUBLIC`
 
+5. Sebelum melakukan Reverse Proxy, akses `dash.cloudflare.com` terlebih dahulu untuk membuat New Records Baru. Saya membuat 2 Records
+
+```
+# Record CICD untuk Reverse Proxy
+Type: A
+Name: cicd.jouzie
+IPv4 Address: 54.162.149.199
+TTL: Auto
+Proxy: DNS Only
+
+# Record CICD untuk Server Private
+Type: A
+Name: cicdserver.jouzie
+IPv4 Address: 172.31.62.162
+TTL: Auto
+Proxy: DNS Only
+```
+
+Alasan saya membuat Record untuk Instance `JENKINS CI/CD - PRIVATE`, karena agar memudahkan saya melakukan Aktifitas Log-in, Reverse Proxy tanpa perlu Copy-Paste IP Private nya.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2018-39-25-697.jpg)
+
+6. Masuk ke Instance `REVERSE PROXY - PUBLIC`, lalu jalankan command `cerbot` berikut untuk meng-instal sertifikat di subdomain `cicd.jouzie.onlinecamp.id`
+
+```
+sudo certbot certonly --dns-cloudflare --dns-cloudflare-credentials ~/.secrets/cloudflare.ini -d cicd.onlinecamp.id
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2018-42-59-852.jpg)
+
+7. 
 
 
 
