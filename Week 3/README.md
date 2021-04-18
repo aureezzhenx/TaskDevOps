@@ -460,9 +460,10 @@ Alur Jobs:
 2. Jenkins menerima Trigger dari Github
 3. Jenkins melakukan Auto Build Docker Images
 4. Push ke Repository Docker Hub
-5. Dari Instance Frontend, Pull Docker Images dari Docker Hub
-6. Create Container
-7. Start Container
+5. Jenkins masuk SSH Frontend
+6. Pull Docker Images dari Docker Hub
+7. Create Container
+8. Start Container
 ```
 
 1. Memasang Plugin Docker (CloudBees Docker Build and Publish plugin)
