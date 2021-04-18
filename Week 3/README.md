@@ -6,7 +6,7 @@ Week 3 - Docker & CI/CD
 
 - [Install Docker](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/README.md#install-docker)
 - [Create Docker Images](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/README.md#create-docker-image)
-- Install Application
+- [Install Application](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/README.md#install-application)
 - Install Jenkins
 - Create Jenkins Job
 
@@ -216,6 +216,61 @@ sudo docker push aureezzhenx/wayshub-backend:v1.0.0
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img2/bandicam%202021-04-16%2005-31-57-560.jpg)
 
 
+# Install Application
+
+Catatan: Saya sebelum melakukan task ini, saya sudah mematikan aplikasi `wayshub-frontend` dan `wayshub-backend` lewat `pm2` dengan command `pm2 stop wayshub-backend` (Backend) dan `pm2 stop wayshub` (Frontend) agar port yang diekspos tidak bentrok.
+
+1. Masuk ke Instance `BACKEND - PRIVATE` lalu ketik command berikut:
+
+```
+# Untuk melihat Images Docker yang sudah dibuat/sudah di download dari hub.docker.com
+sudo docker images
+
+# Membuat Container Docker Baru
+sudo docker container create --name wayshub-backend -p 5000:5000 aureezzhenx/wayshub-backend:v1.0.0
+
+# Mengecek semua list Container yang status nya Created/Exited/Run
+sudo docker container ls --all
+
+# Menjalankan Container yang sebelumnya dibuat
+sudo docker container start wayshub-backend
+
+# Mengecek Log, apakah Container sudah berjalan dengan baik atau belum
+sudo docker container logs wayshub-backend
+```
+
+Container untuk Wayshub-Backend sudah berjalan dengan baik, sekarang lakukan untuk Wayshub-Frontend
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img3/bandicam%202021-04-18%2016-17-44-955.jpg)
+
+2. Masuk ke Instance `FRONTEND - PRIVATE` lalu ketik command berikut:
+
+```
+# Untuk melihat Images Docker yang sudah dibuat/sudah di download dari hub.docker.com
+sudo docker images
+
+# Membuat Container Docker Baru
+sudo docker container create --name wayshub-frontend -p 3000:3000 aureezzhenx/wayshub-frontend:v1.0.0
+
+# Mengecek semua list Container yang status nya Created/Exited/Run
+sudo docker container ls --all
+
+# Menjalankan Container yang sebelumnya dibuat
+sudo docker container start wayshub-frontend
+
+# Mengecek Log, apakah Container sudah berjalan dengan baik atau belum
+sudo docker container logs wayshub-frontend
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img3/bandicam%202021-04-18%2016-19-46-042.jpg)
+
+Container untuk Wayshub-Frontend dan Wayshub-Backend kini sudah berjalan dengan baik.
+
+3. Akses aplikasi yang sudah berjalan di Container
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img3/bandicam%202021-04-18%2016-20-02-553.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img3/bandicam%202021-04-18%2016-20-11-687.jpg)
 
 
 
