@@ -451,6 +451,14 @@ sudo systemctl restart nginx
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2019-02-41-607.jpg)
 
+# Create Jenkins Job
+
+Alur Jobs:
+
+```
+Pull/Push Wayshub yang sudah ada Dockerfile ke Github -> Jenkins menerima Trigger dari Github -> Jenkins melakukan Auto Build Docker Images -> Push ke Repository
+```
+
 
 
 
