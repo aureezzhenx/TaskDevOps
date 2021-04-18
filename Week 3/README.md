@@ -492,7 +492,51 @@ Push ke Repository Docker Hub
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-18-37-723.jpg)
 
-4. 
+4. Buka halaman Repository yang ingin di-trigger Jenkins, klik Settings
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-19-29-558.jpg)
+
+5. Pada sisi kiri menu, klik `Webhooks`, lalu buat `Webhooks` baru. Isi seperti dibawah ini:
+
+```
+Payload URL: https://cicd.jouzie.onlinecamp.id/github-webhook/
+Content Type: application/json
+Memilih Let me select Individual Events (Pull Request & Pushes)
+```
+
+Jika sudah, Accept.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-19-57-345.jpg)
+
+6. Melakukan test Trigger ke Jenkins, dengan mengubah file Readme
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-20-38-463.jpg)
+
+7. Jenkins menerima Trigger dari Repository Github yang sudah terkoneksi oleh Webhooks, dan melakukan Job nya
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-20-48-640.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-20-54-325.jpg)
+
+8. Proses Job dari Jenkins tengah berlangsung, Job sedang melakukan Build Docker Images.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-20-59-884.jpg)
+
+9. Proses Build sudah selesai.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-22-16-257.jpg)
+
+10. Lalu cek di Repository Docker Hub. Karena sebelumnya tidak mengisi Tag Versi disaat konfigurasi Build Job. Oleh karena itu, dianggap sebagai `latest` Tag.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-22-35-282.jpg)
+
+
+
+
+
+
+
+
 
 
 
