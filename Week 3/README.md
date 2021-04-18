@@ -283,11 +283,63 @@ Catatan:
 2. Subnet Instance: Memakai Subnet Private sebelumnya.
 3. Auto assigned Public Instance: Disabled
 4. Kedua type Instance: t2.large
-5. Storage kedua Instance: 30GB
-6. Kedua Instance memakai Key-Pair yang sama, JouzieAuliaRezky.pem
+5. Storage Instance: 30GB
+6. Instance memakai Key-Pair yang sama, JouzieAuliaRezky.pem
 ```
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2018-34-30-441.jpg)
+
+2. Akses Instance `JENKINS CI/CD - PRIVATE` dengan keypair `JouzieAuliaRezky.pem`. Seperti biasa, lakukan adduser agar tidak menggunakan Key-Pair lagi disaat Log-in Instance tersebut.
+
+Command:
+
+```
+1. sudo adduser jouziejenkins
+2. Memasukan Password UNIX dan mengisi biodata User
+3. sudo usermod -aG sudo jouziejenkins
+4. sudo nano /etc/ssh/sshd_config
+5. Merubah menjadi YES di Password Authentication, save overwrite
+6. sudo systemctl restart sshd
+```
+
+Dan lakukan `sudo apt update` dan `sudo apt upgrade` setelah melakukan `adduser`
+
+3. Install OpenJDK 8 dengan command: `sudo apt-get install openjdk-8-jdk`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2018-35-54-680.jpg)
+
+4. Lakukan ini, Command:
+
+```
+Menambahkan Key Repository Jenkins
+
+wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+
+Menambahkan Repository Jenkins
+
+sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+
+Jalankan apt-get update
+
+sudo apt-get update
+
+Pasang Jenkins
+
+sudo apt-get install jenkins
+
+Menjalankan Jenkins
+
+sudo systemctl start jenkins
+
+Melihat Status Jenkins
+
+sudo systemctl status jenkins
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2018-37-34-318.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2018-39-10-744.jpg)
+
 
 
 
