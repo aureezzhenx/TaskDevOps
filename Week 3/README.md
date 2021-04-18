@@ -456,7 +456,10 @@ sudo systemctl restart nginx
 Alur Jobs:
 
 ```
-Pull/Push Wayshub yang sudah ada Dockerfile ke Github -> Jenkins menerima Trigger dari Github -> Jenkins melakukan Auto Build Docker Images -> Push ke Repository
+Pull/Push Wayshub yang sudah ada Dockerfile ke Github -> 
+Jenkins menerima Trigger dari Github -> 
+Jenkins melakukan Auto Build Docker Images -> 
+Push ke Repository
 ```
 
 
