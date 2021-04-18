@@ -459,8 +459,44 @@ Alur Jobs:
 Pull/Push Wayshub yang sudah ada Dockerfile ke Github -> 
 Jenkins menerima Trigger dari Github -> 
 Jenkins melakukan Auto Build Docker Images -> 
-Push ke Repository
+Push ke Repository Docker Hub
 ```
+
+1. Memasang Plugin Docker (CloudBees Docker Build and Publish plugin)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-17-45-375.jpg)
+
+2. Membuat Jobs Baru untuk Frontend, dengan memilih `Freestyle project`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-18-09-804.jpg)
+
+3. Melakukan Konfigurasi
+
+```
+1. Github Project: https://github.com/aureezzhenx/wayshub-frontend
+2. Repository URL: https://github.com/aureezzhenx/wayshub-frontend.git
+3. Branch Specifier: */main
+4. Checklist GITHUB HOOK TRIGGER FOR GITSCM POLLING
+5. Poll SCM: * * * * * (every minutes)
+6. Add Build: Docker Build And Publish
+7. Repository Name: aureezzhenx/wayshub-frontend 
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-18-21-176.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-18-23-768.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-18-26-659.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-18-29-244.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-18-37-723.jpg)
+
+4. 
+
+
+
+
 
 
 
