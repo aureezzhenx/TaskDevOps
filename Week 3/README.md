@@ -366,7 +366,91 @@ sudo certbot certonly --dns-cloudflare --dns-cloudflare-credentials ~/.secrets/c
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2018-42-59-852.jpg)
 
-7. 
+7. Masuk ke direktori `/etc/nginx/` lalu buat direktori baru yaitu `cicd` dengan command `sudo mkdir cicd`, masuk ke direktory tersebut lalu lakukan nano `cicd.conf` dengan command `sudo nano cicd.conf`
+
+Copy-Paste config ini:
+
+```
+server
+{
+        server_name cicd.jouzie.onlinecamp.id;
+
+        location /
+        {
+                proxy_pass http://cicdserver.jouzie.onlinecamp.id:8080;
+        }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/cicd.jouzie.onlinecamp.id/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/cicd.jouzie.onlinecamp.id/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+```
+
+Jika sudah, save overwrite dengan nama file `cicd.conf`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2019-02-41-6077.jpg)
+
+8. Edit file `nginx.conf` di direktory `/etc/nginx/` dengan command `sudo nano nginx.conf`. Tambahkan Include baru untuk `cicd`
+
+```
+include /etc/nginx/cicd/*;
+```
+
+Jika sudah, save overwrite.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2018-48-39-018.jpg)
+
+9. Lakukan Restart `nginx` dengan command:
+
+```
+sudo nginx -t
+sudo systemctl restart nginx
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2018-49-54-804.jpg)
+
+10. Jalankan `sudo certbot` untuk me-registrasi SSL terhadap sub-domain `cicd.jouzie.onlinecamp.id`. Pilih nomor urutan 3
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2018-50-27-535.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2018-50-27-583.jpg)
+
+11. Akses `jenkins` dengan URL `https://cicd.jouzie.onlinecamp.id`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2018-59-19-424.jpg)
+
+12. Lakukan Unlock Jenkins dengan mengecek file `InitialAdminPassword` di direktori `/var/lib/jenkins/secrets/initialAdminPassword` dengan command `sudo cat /var/lib/jenkins/secrets/initialAdminPassword`. Copy `InitialAdminPassword` yang didapat.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2018-59-58-801.jpg)
+
+13. Paste `InitialAdminPassword` nya
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2019-00-14-626.jpg)
+
+14. Memilih `Install suggested plugins`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2019-00-23-594.jpg)
+
+15. Proses Install Plugin 
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2019-00-31-647.jpg)
+
+16. Membuat akun Admin User untuk pertama kalinya di Jenkins
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2019-02-18-149.jpg)
+
+17. Mengisi URL Jenkins, default-nya sudah terisi automatis oleh Jenkins
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2019-02-30-358.jpg)
+
+18. Instalasi Jenkins sudah berhasil
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2019-02-34-419.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2019-02-41-607.jpg)
+
 
 
 
