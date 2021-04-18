@@ -456,10 +456,13 @@ sudo systemctl restart nginx
 Alur Jobs:
 
 ```
-Pull/Push Wayshub yang sudah ada Dockerfile ke Github -> 
-Jenkins menerima Trigger dari Github -> 
-Jenkins melakukan Auto Build Docker Images -> 
-Push ke Repository Docker Hub
+1. Pull/Push Wayshub yang sudah ada Dockerfile ke Github
+2. Jenkins menerima Trigger dari Github
+3. Jenkins melakukan Auto Build Docker Images
+4. Push ke Repository Docker Hub
+5. Dari Instance Frontend, Pull Docker Images dari Docker Hub
+6. Create Container
+7. Start Container
 ```
 
 1. Memasang Plugin Docker (CloudBees Docker Build and Publish plugin)
