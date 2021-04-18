@@ -21,7 +21,7 @@ Week 2 - Manage Code & Database
 Week 3 - Docker & CI/CD
 - [Install Docker](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/README.md#install-docker)
 - [Create Docker Images](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/README.md#create-docker-image)
-- Install Application
+- [Install Application](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/README.md#install-application)
 - Install Jenkins
 - Create Jenkins Job
 
