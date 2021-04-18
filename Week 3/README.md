@@ -311,34 +311,30 @@ Dan lakukan `sudo apt update` dan `sudo apt upgrade` setelah melakukan `adduser`
 4. Lakukan ini, Command:
 
 ```
-Menambahkan Key Repository Jenkins
-
+# Menambahkan Key Repository Jenkins
 wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
 
-Menambahkan Repository Jenkins
-
+# Menambahkan Repository Jenkins
 sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 
-Jalankan apt-get update
-
+# Jalankan apt-get update
 sudo apt-get update
 
-Pasang Jenkins
-
+# Install Jenkins
 sudo apt-get install jenkins
 
-Menjalankan Jenkins
-
+# Menjalankan Jenkins
 sudo systemctl start jenkins
 
-Melihat Status Jenkins
-
+# Melihat Status Jenkins
 sudo systemctl status jenkins
 ```
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2018-37-34-318.jpg)
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2018-39-10-744.jpg)
+
+`jenkins` sudah terinstall dengan port `8080`, tapi belum bisa di akses secara public karena Instance `JENKINS CI/CD - PRIVATE` tidak ada IP Public-nya. Sekarang lakukan reverse proxy terhadap `jenkins` di Instance `REVERSE PROXY - PUBLIC`
 
 
 
