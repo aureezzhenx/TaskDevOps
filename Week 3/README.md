@@ -272,10 +272,22 @@ Container untuk Wayshub-Frontend dan Wayshub-Backend kini sudah berjalan dengan 
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img3/bandicam%202021-04-18%2016-20-11-687.jpg)
 
+# Install Jenkins
 
+1. Akses `awseducate.com` lalu buat Instance untuk `JENKINS CI/CD - PRIVATE`, nantinya `Jenkins` akan diinstal di instance sana.
 
+Catatan:
 
+```
+1. Security Group Instance: All Traffic
+2. Subnet Instance: Memakai Subnet Private sebelumnya.
+3. Auto assigned Public Instance: Disabled
+4. Kedua type Instance: t2.large
+5. Storage kedua Instance: 30GB
+6. Kedua Instance memakai Key-Pair yang sama, JouzieAuliaRezky.pem
+```
 
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2018-34-30-441.jpg)
 
 
 
