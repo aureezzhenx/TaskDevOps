@@ -1,0 +1,12 @@
+# NAMA FILE: Dockerfile
+
+FROM node:14
+
+WORKDIR /usr/src/app
+COPY . .
+
+RUN npm i & npm run build
+RUN sed -i "4s/localhost/database.onlinecamp.id/" src/config/api.js
+
+EXPOSE 3000
+CMD ["npm","start"]
