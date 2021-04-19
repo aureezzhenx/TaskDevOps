@@ -482,6 +482,12 @@ sudo chmod g+rwx "/home/$USER/.docker" -R
 Sumber:
 https://stackoverflow.com/questions/48957195/how-to-fix-docker-got-permission-denied-issue
 https://askubuntu.com/questions/747778/docker-warning-config-json-permission-denied
+
+# Otorisasi SSH Server yang ingin dideploy dengan SSH Jenkins
+ssh-keygen -R 172.31.48.93
+
+# Meng-install sshpass agar Jenkins dapat masuk SSH Server yang ingin dideploy
+sudo apt-get install sshpass
 ```
 
 1. Memasang Plugin Docker (CloudBees Docker Build and Publish plugin)
