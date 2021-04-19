@@ -500,8 +500,19 @@ https://askubuntu.com/questions/747778/docker-warning-config-json-permission-den
 3. Branch Specifier: */main
 4. Checklist GITHUB HOOK TRIGGER FOR GITSCM POLLING
 5. Poll SCM: * * * * * (every minutes)
-6. Add Build: Docker Build And Publish
+6. Add Build step #1: Docker Build And Publish
 7. Repository Name: aureezzhenx/wayshub-frontend 
+8. Add Build step #2 : Execute Shell
+9. Command:
+
+sshpass -p 'PASSWORDSSHFRONTEND' ssh -o StrictHostKeyChecking=no jouziefrontend@172.31.48.93 '
+
+docker container stop wayshub-frontend
+docker container rm wayshub-frontend
+docker container create --name wayshub-frontend -p 3000:3000 aureezzhenx/wayshub-frontend
+docker container start wayshub-frontend
+
+'
 ```
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-18-21-176.jpg)
