@@ -531,6 +531,8 @@ docker container start wayshub-frontend
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-18-37-723.jpg)
 
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2007-07-46-640.jpg)
+
 4. Buka halaman Repository yang ingin di-trigger Jenkins, klik Settings
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-19-29-558.jpg)
@@ -549,25 +551,46 @@ Jika sudah, Accept.
 
 6. Melakukan test Trigger ke Jenkins, dengan mengubah file Readme
 
-![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-20-38-463.jpg)
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2007-16-26-120.jpg)
 
 7. Jenkins menerima Trigger dari Repository Github yang sudah terkoneksi oleh Webhooks, dan melakukan Job nya
 
-![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-20-48-640.jpg)
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2007-16-35-559.jpg)
 
-![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-20-54-325.jpg)
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2007-16-47-623.jpg)
 
 8. Proses Job dari Jenkins tengah berlangsung, Job sedang melakukan Build Docker Images.
 
-![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-20-59-884.jpg)
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2007-17-57-231.jpg)
 
 9. Proses Build sudah selesai.
 
-![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-22-16-257.jpg)
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2007-18-03-543.jpg)
 
 10. Lalu cek di Repository Docker Hub. Karena sebelumnya tidak mengisi Tag Versi disaat konfigurasi Build Job. Oleh karena itu, dianggap sebagai `latest` Tag.
 
-![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-22-35-282.jpg)
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2007-19-40-181.jpg)
+
+11. Memastikan apakah sudah automatis ter deploy dan jalan automatis container docker-nya dengan mengecek di Server Frontend
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2007-21-34-265.jpg)
+
+Alur Jobs:
+
+```
+1. Pull/Push Wayshub yang sudah ada Dockerfile ke Github
+2. Jenkins menerima Trigger dari Github
+3. Jenkins melakukan Auto Build Docker Images
+4. Push ke Repository Docker Hub
+5. Jenkins masuk SSH Frontend
+6. Pull Docker Images dari Docker Hub
+7. Stop Contariner
+8. Delete Container
+9. Create Container
+10. Start Container
+```
+
+Sudah berjalan dengan baik.
 
 
 
