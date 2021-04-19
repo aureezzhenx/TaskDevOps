@@ -462,8 +462,10 @@ Alur Jobs:
 4. Push ke Repository Docker Hub
 5. Jenkins masuk SSH Frontend
 6. Pull Docker Images dari Docker Hub
-7. Create Container
-8. Start Container
+7. Stop Contariner
+8. Delete Container
+9. Create Container
+10. Start Container
 ```
 
 1. Memasang Plugin Docker (CloudBees Docker Build and Publish plugin)
