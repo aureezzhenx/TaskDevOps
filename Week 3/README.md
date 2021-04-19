@@ -468,6 +468,22 @@ Alur Jobs:
 10. Start Container
 ```
 
+Catatan:
+
+```
+# Pastikan sudah melakukan command ini, agar tidak perlu sudo saat menjalankan command Docker
+
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+sudo chmod g+rwx "/home/$USER/.docker" -R
+
+Sumber:
+https://stackoverflow.com/questions/48957195/how-to-fix-docker-got-permission-denied-issue
+https://askubuntu.com/questions/747778/docker-warning-config-json-permission-denied
+```
+
 1. Memasang Plugin Docker (CloudBees Docker Build and Publish plugin)
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-17-45-375.jpg)
