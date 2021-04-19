@@ -590,7 +590,7 @@ Alur Jobs:
 10. Start Container
 ```
 
-Sudah berjalan dengan baik.
+Sudah berjalan dengan baik!
 
 
 
