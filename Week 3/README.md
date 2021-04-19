@@ -8,7 +8,7 @@ Week 3 - Docker & CI/CD
 - [Create Docker Images](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/README.md#create-docker-image)
 - [Install Application](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/README.md#install-application)
 - [Install Jenkins](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/README.md#install-jenkins)
-- Create Jenkins Job
+- [Create Jenkins Job](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/README.md#create-jenkins-job)
 
 # Install Docker
 
@@ -450,6 +450,136 @@ sudo systemctl restart nginx
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2019-02-34-419.jpg)
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img4/bandicam%202021-04-18%2019-02-41-607.jpg)
+
+# Create Jenkins Job
+
+Alur Jobs:
+
+```
+1. Pull/Push Wayshub yang sudah ada Dockerfile ke Github
+2. Jenkins menerima Trigger dari Github
+3. Jenkins melakukan Auto Build Docker Images
+4. Push ke Repository Docker Hub
+5. Jenkins masuk SSH Frontend
+6. Pull Docker Images dari Docker Hub
+7. Stop Contariner
+8. Delete Container
+9. Create Container
+10. Start Container
+```
+
+Catatan:
+
+```
+# Pastikan sudah melakukan command ini, agar tidak perlu sudo saat menjalankan command Docker
+
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+sudo chmod g+rwx "/home/$USER/.docker" -R
+
+Sumber:
+https://stackoverflow.com/questions/48957195/how-to-fix-docker-got-permission-denied-issue
+https://askubuntu.com/questions/747778/docker-warning-config-json-permission-denied
+
+# Otorisasi SSH Server yang ingin dideploy dengan SSH Jenkins
+ssh-keygen -R 172.31.48.93
+
+# Meng-install sshpass agar Jenkins dapat masuk SSH Server yang ingin dideploy
+sudo apt-get install sshpass
+```
+
+1. Memasang Plugin Docker (CloudBees Docker Build and Publish plugin)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-17-45-375.jpg)
+
+2. Membuat Jobs Baru untuk Frontend, dengan memilih `Freestyle project`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-18-09-804.jpg)
+
+3. Melakukan Konfigurasi
+
+```
+1. Github Project: https://github.com/aureezzhenx/wayshub-frontend
+2. Repository URL: https://github.com/aureezzhenx/wayshub-frontend.git
+3. Branch Specifier: */main
+4. Checklist GITHUB HOOK TRIGGER FOR GITSCM POLLING
+5. Poll SCM: * * * * * (every minutes)
+6. Add Build step #1: Docker Build And Publish
+7. Repository Name: aureezzhenx/wayshub-frontend 
+8. Add Build step #2 : Execute Shell
+9. Command:
+
+sshpass -p 'PASSWORDSSHFRONTEND' ssh -o StrictHostKeyChecking=no jouziefrontend@172.31.48.93 '
+
+docker container stop wayshub-frontend
+docker container rm wayshub-frontend
+docker container create --name wayshub-frontend -p 3000:3000 aureezzhenx/wayshub-frontend
+docker container start wayshub-frontend
+
+'
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-18-21-176.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-18-23-768.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-18-26-659.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-18-29-244.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-18-37-723.jpg)
+
+4. Buka halaman Repository yang ingin di-trigger Jenkins, klik Settings
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-19-29-558.jpg)
+
+5. Pada sisi kiri menu, klik `Webhooks`, lalu buat `Webhooks` baru. Isi seperti dibawah ini:
+
+```
+Payload URL: https://cicd.jouzie.onlinecamp.id/github-webhook/
+Content Type: application/json
+Memilih Let me select Individual Events (Pull Request & Pushes)
+```
+
+Jika sudah, Accept.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-19-57-345.jpg)
+
+6. Melakukan test Trigger ke Jenkins, dengan mengubah file Readme
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-20-38-463.jpg)
+
+7. Jenkins menerima Trigger dari Repository Github yang sudah terkoneksi oleh Webhooks, dan melakukan Job nya
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-20-48-640.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-20-54-325.jpg)
+
+8. Proses Job dari Jenkins tengah berlangsung, Job sedang melakukan Build Docker Images.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-20-59-884.jpg)
+
+9. Proses Build sudah selesai.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-22-16-257.jpg)
+
+10. Lalu cek di Repository Docker Hub. Karena sebelumnya tidak mengisi Tag Versi disaat konfigurasi Build Job. Oleh karena itu, dianggap sebagai `latest` Tag.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/img5/bandicam%202021-04-19%2001-22-35-282.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
