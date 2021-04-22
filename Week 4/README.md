@@ -12,7 +12,19 @@ Week 3 - Docker & CI/CD
 
 1. Akses `awseducate.com` Lalu buat Instance Private baru untuk Monitoring ini. Kemudian buatlah `adduser` agar tidak menggunakan Key-Pair lagi.
 
-2. Akses Instance tersebut
+```
+1. sudo adduser jouziemonitoring
+2. Mengisi identitas user
+3. sudo usermod -aG sudo jouziemonitoring
+4. Melakukan perubahan PasswordAuthentication di sshd_config
+5. sudo nano /etc/ssh/sshd_config
+6. Rubah PasswordAuthentication dari NO menjadi YES
+7. Save Overwrite
+8. Restart sshd
+9. sudo systemctl restart sshd
+```
+
+2. Akses kembali ke Instance tersebut tanpa Key-Pair.
 
 3. Memulai Instalasi (Install Prometheus, Node Docker, menambah user prometheus dan node_exporter, membuat service dan systemd untuk prometheus dan node_exporter)
 
