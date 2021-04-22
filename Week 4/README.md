@@ -167,11 +167,11 @@ scrape_configs:
   - job_name: 'prometheus'
     scrape_interval: 5s
     static_configs:
-      - targets: ['45.77.252.94:9090']
+      - targets: ['localhost:9090']
   - job_name: 'node_exporter'
     scrape_interval: 5s
     static_configs:
-      - targets: ['45.77.252.94:9100']
+      - targets: ['localhost:9100']
 
 18. Restart prometheus.
 
