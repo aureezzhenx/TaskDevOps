@@ -195,6 +195,33 @@ sudo systemctl status prometheus
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2001-45-44-394.jpg)
 
+4. Melakukan test akses Web Node Exporter dan Prometheus
+
+Catatan:
+
+```
+Saya melakukan test akses ini dengan menggunakan VPN dari REVERSE PROXY / GATEWAY dengan OPENVPN, dan saya juga sudah menambahkan domain record untuk IP Private ini untuk semua Instance Private saya.
+
+serverfrontend.jouzie.onlinecamp.id
+serverbackend.jouzie.onlinecamp.id
+serverdatabase.jouzie.onlinecamp.id
+servercicd.jouzie.onlinecamp.id
+servermonitoring.jouzie.onlinecamp.id
+```
+
+Akses `localhost:9100` untuk mengecek Web Node Exporter
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2001-46-29-351.jpg)
+
+Akses `localhost:9090` untuk mengecek Web Prometheus
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2001-46-44-131.jpg)
+
+Mengecek status Node Exporter dan Prometheus berjalan dengan baik / tidak
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2001-46-47-712.jpg)
+
+
 
 
 
