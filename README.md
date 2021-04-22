@@ -1,7 +1,7 @@
 # Task Dev Ops
 Jouzie Aulia Rezky - DWDS04JAR - DevOps Batch 4 All Task
 
-Sistem Operasi yang digunakan: Windows 10 Pro H102 - Menggunakan Bash Windows Subsystem Linux (Ubuntu)
+Sistem Operasi yang digunakan: Windows 10 Pro H102 - Menggunakan Bash Windows Subsystem Linux (Ubuntu) dan mobaXterm
 
 Week 1 - VMWare & Cloud Computing
 - [VMware - Install Ubuntu](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%201/README.md#--vmware---install-ubuntu)
@@ -26,6 +26,7 @@ Week 3 - Docker & CI/CD
 - [Create Jenkins Job](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/README.md#create-jenkins-job)
 
 Week 4
-- TBA
-- TBA
-- TBA
+- Setup Monitoring Server
+- Connect Multiple Server to Prometheus
+- Deploy PHP Application in cPanel
+- Setup Server with Ansible
