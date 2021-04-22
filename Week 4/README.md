@@ -187,7 +187,11 @@ sudo systemctl status prometheus
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2001-42-30-193.jpg)
 
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2002-12-52-875.jpg)
+
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2001-42-39-859.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2002-13-05-953.jpg)
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2001-45-44-394.jpg)
 
