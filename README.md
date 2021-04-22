@@ -24,7 +24,7 @@ Sistem Operasi yang digunakan: Windows 10 Pro H102 - Menggunakan Bash Windows Su
 - [Install Jenkins](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/README.md#install-jenkins)
 - [Create Jenkins Job](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%203/README.md#create-jenkins-job)
 
-# Week 4
+# Week 4 - Monitoring & Ansible
 - Setup Monitoring Server
 - Connect Multiple Server to Prometheus
 - Deploy PHP Application in cPanel
