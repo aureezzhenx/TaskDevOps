@@ -298,6 +298,94 @@ sudo certbot certonly --dns-cloudflare --dns-cloudflare-credentials ~/.secrets/c
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2023-43-06-389.jpg)
 
+14. Memulai Install Grafana untuk dapat di visuallisasi kan datanya dari Prometheus
+
+Download GPG key dan tambah repository Grafana dengan akses root.
+
+```
+sudo wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-24%2000-20-28-574.jpg)
+
+15. Install Grafana. `sudo apt-get install grafana -y`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-24%2000-21-33-858.jpg)
+
+16. Aktifkan grafana-server.
+
+```
+systemctl enable grafana-server	
+systemctl start grafana-server	
+systemctl status grafana-server
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-24%2000-22-42-506.jpg)
+
+17. Meng-edit konfigurasi Grafana agar tidak dapat sign-up user.
+
+Edit dengan command `sudo nano /etc/grafana/grafana.ini`, lalu cari seperti ini:
+
+```
+[users]
+# disable user signup / registration
+allow_sign_up = false
+```
+
+Rubah `allow_sign_up` menjadi `false` dan hapus semicolon nya `;`. Jika sudah, save overwrite.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-24%2000-25-13-383.jpg)
+
+18. Restart grafana-server.
+
+```
+sudo systemctl restart grafana-server
+sudo systemctl status grafana-server
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-24%2000-26-53-794.jpg)
+
+19. Meng-konfigurasi ulang `monitoring.conf` di Gateway, karena sebelumnya saya me-Reverse Proxy untuk Port 9090 (Prometheus) tidak untuk Grafana (3000). 
+
+Jika sudah, lakukan restart `nginx` dengan cara `sudo nginx -t` dan `sudo systemctl restart nginx`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-24%2000-29-17-933.jpg)
+
+20. Akses `monitoring.jouzie.onlinecamp.id`, tampilan sudah berubah menjadi Grafana, tidak Prometheus lagi.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-24%2000-30-16-423.jpg)
+
+21. Mengisi Username default. Username `admin` Password `admin`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-24%2000-30-22-846.jpg)
+
+Lalu akan diarahkan mengganti Password baru
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-24%2000-30-34-462.jpg)
+
+22. Installasi Grafana sudah selesai.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-24%2000-30-49-955.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
