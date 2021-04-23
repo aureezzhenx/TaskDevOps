@@ -368,6 +368,96 @@ Lalu akan diarahkan mengganti Password baru
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-24%2000-30-49-955.jpg)
 
+# Connect Multiple Server to Prometheus
+
+1. Melakukan Installasi `Node Exporter` di Instance Private `FRONTEND, BACKEND, DATABASE, CICD`. Lakukan dengan Commands ini:
+
+```
+sudo useradd --no-create-home --shell /bin/false node_exporter
+curl -LO https://github.com/prometheus/node_exporter/releases/download/v0.18.1/node_exporter-0.18.1.linux-amd64.tar.gz
+tar xzvf node_exporter-0.18.1.linux-amd64.tar.gz
+sudo cp node_exporter-0.18.1.linux-amd64/node_exporter /usr/local/bin
+sudo chown node_exporter:node_exporter /usr/local/bin/node_exporter
+sudo nano /etc/systemd/system/node_exporter.service
+
+# Edit node_exporter.service di nano
+
+[Unit]
+Description=Node Exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=node_exporter
+Group=node_exporter
+Type=simple
+ExecStart=/usr/local/bin/node_exporter
+
+[Install]
+WantedBy=multi-user.target
+
+# Jika sudah save overwrite!
+
+sudo systemctl daemon-reload
+sudo systemctl enable node_exporter
+sudo systemctl start node_exporter
+sudo systemctl status node_exporter
+```
+
+Lakukan hal yang sama di setiap Instance Private
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img2/bandicam%202021-04-24%2001-53-34-660.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img2/bandicam%202021-04-24%2001-56-38-377.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img2/bandicam%202021-04-24%2001-57-08-344.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img2/bandicam%202021-04-24%2001-57-10-450.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img2/bandicam%202021-04-24%2002-00-01-869.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img2/bandicam%202021-04-24%2002-00-18-115.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img2/bandicam%202021-04-24%2002-02-46-770.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img2/bandicam%202021-04-24%2002-03-07-481.jpg)
+
+2. Memasang Target `node_exporter` baru di `Promotheus.yml`. Hubungkan Setiap IP Private Instance yang sudah terinstall `node_exporter` dan tambah Port `9100`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img2/bandicam%202021-04-24%2002-10-20-611.jpg)
+
+3. Restart Prometheus dengan commands `sudo systemctl restart prometheus` dan cek status `sudo systemctl status prometheus` untuk mengecek kembali apakah Prometheus sudah berjalan dengan baik / belum
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img2/bandicam%202021-04-24%2002-11-24-357.jpg)
+
+4. Masuk ke `monitoring.jouzie.onlinecamp.id` Lalu Add Data Source dari Prometheus
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img2/bandicam%202021-04-24%2002-12-41-711.jpg)
+
+5. Pilih `Prometheus`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img2/bandicam%202021-04-24%2002-12-53-708.jpg)
+
+6. Masukan URL Prometheus Port 9090, jika sudah save and test
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img2/bandicam%202021-04-24%2002-13-41-433.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img2/bandicam%202021-04-24%2002-13-51-515.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
