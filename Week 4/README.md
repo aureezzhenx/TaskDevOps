@@ -316,9 +316,9 @@ sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
 16. Aktifkan grafana-server.
 
 ```
-systemctl enable grafana-server	
-systemctl start grafana-server	
-systemctl status grafana-server
+sudo systemctl enable grafana-server	
+sudo systemctl start grafana-server	
+sudo systemctl status grafana-server
 ```
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-24%2000-22-42-506.jpg)
