@@ -200,7 +200,8 @@ sudo systemctl status prometheus
 Catatan:
 
 ```
-Saya melakukan test akses ini dengan menggunakan VPN dari REVERSE PROXY / GATEWAY dengan OPENVPN, dan saya juga sudah menambahkan domain record untuk IP Private ini untuk semua Instance Private saya.
+Saya melakukan test akses ini dengan menggunakan VPN dari REVERSE PROXY / GATEWAY dengan OPENVPN, 
+dan saya juga sudah menambahkan domain record untuk IP Private ini untuk semua Instance Private saya.
 
 serverfrontend.jouzie.onlinecamp.id
 serverbackend.jouzie.onlinecamp.id
@@ -208,6 +209,8 @@ serverdatabase.jouzie.onlinecamp.id
 servercicd.jouzie.onlinecamp.id
 servermonitoring.jouzie.onlinecamp.id
 ```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2023-46-37-675.jpg)
 
 Akses `localhost:9100` untuk mengecek Web Node Exporter
 
