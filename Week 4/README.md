@@ -3,7 +3,7 @@ Jouzie Aulia Rezky - DWDS04JAR
 
 Week 3 - Docker & CI/CD
 
-- Setup Monitoring Server
+- [Setup Monitoring Server](https://github.com/aureezzhenx/TaskDevOps/tree/main/Week%204#setup-monitoring-server)
 - Connect Multiple Server to Prometheus
 - Deploy PHP Application in cPanel
 - Setup Server with Ansible
@@ -167,17 +167,65 @@ scrape_configs:
   - job_name: 'prometheus'
     scrape_interval: 5s
     static_configs:
-      - targets: ['45.77.252.94:9090']
+      - targets: ['localhost:9090']
   - job_name: 'node_exporter'
     scrape_interval: 5s
     static_configs:
-      - targets: ['45.77.252.94:9100']
+      - targets: ['localhost:9100']
 
 18. Restart prometheus.
 
 sudo systemctl restart prometheus
 sudo systemctl status prometheus
 ```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2001-42-11-930.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2001-42-17-005.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2002-11-49-768.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2001-42-30-193.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2002-12-52-875.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2001-42-39-859.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2002-13-05-953.jpg)
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2001-45-44-394.jpg)
+
+4. Melakukan test akses Web Node Exporter dan Prometheus
+
+Catatan:
+
+```
+Saya melakukan test akses ini dengan menggunakan VPN dari REVERSE PROXY / GATEWAY dengan OPENVPN, dan saya juga sudah menambahkan domain record untuk IP Private ini untuk semua Instance Private saya.
+
+serverfrontend.jouzie.onlinecamp.id
+serverbackend.jouzie.onlinecamp.id
+serverdatabase.jouzie.onlinecamp.id
+servercicd.jouzie.onlinecamp.id
+servermonitoring.jouzie.onlinecamp.id
+```
+
+Akses `localhost:9100` untuk mengecek Web Node Exporter
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2001-46-29-351.jpg)
+
+Akses `localhost:9090` untuk mengecek Web Prometheus
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2001-46-44-131.jpg)
+
+Mengecek status Node Exporter dan Prometheus berjalan dengan baik / tidak
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2001-46-47-712.jpg)
+
+
+
+
+
+
 
 
 
