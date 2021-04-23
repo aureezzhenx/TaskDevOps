@@ -200,7 +200,8 @@ sudo systemctl status prometheus
 Catatan:
 
 ```
-Saya melakukan test akses ini dengan menggunakan VPN dari REVERSE PROXY / GATEWAY dengan OPENVPN, dan saya juga sudah menambahkan domain record untuk IP Private ini untuk semua Instance Private saya.
+Saya melakukan test akses ini dengan menggunakan VPN dari REVERSE PROXY / GATEWAY dengan OPENVPN, 
+dan saya juga sudah menambahkan domain record untuk IP Private ini untuk semua Instance Private saya.
 
 serverfrontend.jouzie.onlinecamp.id
 serverbackend.jouzie.onlinecamp.id
@@ -208,6 +209,8 @@ serverdatabase.jouzie.onlinecamp.id
 servercicd.jouzie.onlinecamp.id
 servermonitoring.jouzie.onlinecamp.id
 ```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2023-46-37-675.jpg)
 
 Akses `localhost:9100` untuk mengecek Web Node Exporter
 
@@ -220,6 +223,94 @@ Akses `localhost:9090` untuk mengecek Web Prometheus
 Mengecek status Node Exporter dan Prometheus berjalan dengan baik / tidak
 
 ![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2001-46-47-712.jpg)
+
+5. Melakukan Reverse Proxy untuk Prometheus
+
+Membuat DNS Record baru untuk Prometheus di `dash.cloudflare.com`
+
+Catatan:
+
+```
+Type Record: A
+Nama: monitoring.jouzie.onlinecamp.id
+IPv4 Address: 34.232.133.218
+TTL: Auto
+Proxy status: DNS Only
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2023-34-30-605.jpg)
+
+6. Masuk ke Instance `REVERSE PROXY GATEWAY - PUBLIC` untuk melakukan Reverse Proxy terhadap aplikasi Prometheus yang terinstall di servernya.
+
+Membuat konfigurasi baru `monitoring.conf` di direktori `/etc/nginx/monitoring`. Membuat direktori baru dengan hak akses root. `sudo mkdir /etc/nginx/monitoring/`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2023-37-00-338.jpg)
+
+7. Edit konfigurasi `monitoring.conf` dengan hak akses root. Edit seperti ini:
+
+```
+server
+{
+      server_name monitoring.jouzie.onlinecamp.id;
+  
+      location /
+      {
+          proxy_pass http://servermonitoring.jouzie.onlinecamp.id:9090:
+      }
+}
+```
+
+Jika sudah, save overwrite
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2023-38-16-284.jpg)
+
+8. Edit konfigurasi `nginx.conf` agar `monitoring.conf` sebelumnya dapat dieksekusi. 
+
+```
+include /etc/nginx/monitoring/*;
+```
+
+Jika sudah, save overwrite
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2023-38-55-910.jpg)
+
+9. Restart `nginx` dengan command `sudo nginx -t` dan `sudo systemctl restart nginx` agar konfigurasi sebelumnya yang ditambahkan dapat dijalankan.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2023-39-19-009.jpg)
+
+10. Jalankan command ini untuk mendaftarkan SSL Certificate terhadap subdomain `monitoring.jouzie.onlinecamp.id` yang sebelumnya sudah dibuat. 
+
+```
+sudo certbot certonly --dns-cloudflare --dns-cloudflare-credentials ~/.secrets/cloudflare.ini -d monitoring.jouzie.onlinecamp.id
+```
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2023-40-18-765.jpg)
+
+11. Jalankan command `sudo certbot` kembali untuk melakukan redirect ke HTTPS dan mengatur renewal SSL Certificate. Pilih urutan yang sesuai.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2023-40-52-973.jpg)
+
+12. Kembali mengecek konfigurasi `monitoring.conf` apakah SSL dan HTTPS Redirect sudah terpasang atau belum dengan command `sudo cat /etc/nginx/monitoring/monitoring.conf`
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2023-41-44-107.jpg)
+
+13. Subdomain `monitoring.jouzie.onlinecamp.id` sudah berhasil di Reverse Proxy dari Gateway, dan sudah terpasang SSL dari Let's Encrypt.
+
+![alt text](https://github.com/aureezzhenx/TaskDevOps/blob/main/Week%204/img1/bandicam%202021-04-23%2023-43-06-389.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
