@@ -29,3 +29,6 @@ Sistem Operasi yang digunakan: Windows 10 Pro H102 - Menggunakan Bash Windows Su
 - Connect Multiple Server to Prometheus
 - Deploy PHP Application in cPanel
 - Setup Server with Ansible
+
+# Final Task
+- [Repository Final Task]https://github.com/aureezzhenx/Jouzie-Final-Task-Dumbways-Batch-4
